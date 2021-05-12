@@ -1,5 +1,15 @@
-<app-header></app-header>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    Sidenav content
+  </mat-sidenav>
 
-<router-outlet></router-outlet>
+  <mat-sidenav-content>
+    <app-header
+    (toggleSideNav)="sidenav.toggle()"
+    ></app-header>
 
-<app-footer></app-footer>>
+    <router-outlet></router-outlet>
+    
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

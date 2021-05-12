@@ -5,19 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module'
-import { FooterComponent, HeaderComponent } from './shared';
+import { MaterialModule } from './shared/components/material.module';
+import { LayoutModule } from './shared/layout/layout.module';
+import { SharedModule } from './shared';
 
 @NgModule({
   declarations: [
-    AppComponent, FooterComponent, HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    CoreModule
+    CoreModule,
+    LayoutModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

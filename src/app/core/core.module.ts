@@ -1,13 +1,19 @@
 import { NgModule } from "@angular/core"
 import {CommonModule} from '@angular/common'
-import {FooterComponent} from '../shared'
+import { HttpClientModule } from '@angular/common/http'
+import { ReceptService } from "./services"
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        HttpClientModule
     ],
-    providers: [],
-    declarations: []
+    providers: [
+        ReceptService
+    ],
+    declarations: [],
+    exports: [
+    ]
 })
 
 export class CoreModule { }

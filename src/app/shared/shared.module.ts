@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core"
 import {CommonModule} from '@angular/common'
+import { MaterialModule } from "./components/material.module"
 
 
 // import {
@@ -8,10 +9,16 @@ import {CommonModule} from '@angular/common'
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        MaterialModule
     ],
-    providers: [],
-    declarations: []
+    providers: [
+        
+    ],
+    declarations: [],
+    exports: [
+        MaterialModule
+    ]
 })
 
 export class SharedModule { }

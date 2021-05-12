@@ -1,4 +1,4 @@
-import { ExecOptionsWithStringEncoding } from "child_process";
+import { Ingredient } from ".";
 
 export interface ReceptIngredient {
     id: number;
