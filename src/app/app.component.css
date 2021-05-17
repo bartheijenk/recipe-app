@@ -1,0 +1,24 @@
+#bottom-align {
+    position: fixed;
+    bottom: 0;
+}
+
+.stretch-tofill {
+    align-items: stretch;
+}
+
+.container {
+    display: flex;
+}
+
+mat-sidenav {
+    width: 200px;
+}
+
+mat-sidenav-container {
+    position: fixed;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
+ }
