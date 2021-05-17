@@ -1,0 +1,4 @@
+<h1>Recpten lijsten</h1>
+<mat-nav-list>
+    <a mat-list-item [routerLink]="['/recept', recept.id]" *ngFor="let recept of recepten"> {{ recept.titel }} </a>
+ </mat-nav-list>

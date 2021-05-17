@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReceptService } from '../../core/';
 import { Recept } from 'src/app/shared/models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +9,15 @@ import { Recept } from 'src/app/shared/models';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  recepten : Recept[] = [];
   
+  receptCount$!: Observable<Recept[]>;
 
   constructor(
     private receptService: ReceptService
-  ) { }
+    ) { }
 
-  ngOnInit(): void {
-    this.getRecepten();
-    
+  ngOnInit(): void {    
+    this.receptCount$ = this.receptService.getAllRecepten();
   }
 
-    getRecepten(): void {
-      this.receptService.getAllRecepten()
-      .subscribe(r => this.recepten = r);
-  }
 }
