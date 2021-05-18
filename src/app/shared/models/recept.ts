@@ -8,5 +8,5 @@ export interface Recept {
     bron: string;
     instructies: string;
     ingredienten: ReceptIngredient[];
-    categorieen: Categorie[];
+    categories: Categorie[];
 }

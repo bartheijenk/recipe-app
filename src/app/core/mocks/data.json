@@ -1453,63 +1453,77 @@
         "bron": null,
         "instructies": "In a small saucepan bring the milk to the boil with the bay leaves, thyme and nutmeg. Melt the butter in a medium sized saucepan. Whisk in the flour and cook for a minute. Remove the bay leaves from the milk and slowly pour it into the flour, whisking constantly. Stop when you have the desired white sauce consistency. Grate in the gruyere and let it melt in, then add the mustard.\\\\nTake 2 slices of bread per sandwich. Spread the sauce over the inside of the top and bottom bread slices. Layer the ham generously onto the bottom slice. Spread the sauce over both sides of each middle slice and place it onto the ham, then add more ham, followed by the top slice, sauce side down.\\\\nPreheat the grill to high. Heat a frying pan over a high heat and add the sandwiches. Cook for a few minutes on each side until the bread is toasted, then transfer the sandwiches to a baking tray. Spread a little more sauce over the top of each sandwich, then grill for a minute until golden and bubbling.\\\\nAdd the oil to a frying pan over a high heat. Crack the eggs into the frying pan and let them bubble. Spoon the hot oil over the egg for a few minutes, until the white is fully cooked and the yolk is still soft.\\\\n",
         "servings": "2",
-        "titel": "Croque Madame"
+        "titel": "Croque Madame",
+        "categories":[
+          {
+            "id": "4",
+            "naam": "Ontbijt"
+          }
+        ]
       },
       {
         "id": "3",
         "bron": null,
         "instructies": "Meng alle ingrediënten voor de saus , en zet weg voor een uur.\\\\nbak het spek zonder boter of olie naar gewenste gaarheid.\\\\nsnijdt de stokbroodjes open, en besmeer licht met de saus , vervolgens de sla , kip, spek en als laatste weer een flinke dot saus.\\\\n",
         "servings": "2",
-        "titel": "Broodje Zeedijk"
+        "titel": "Broodje Zeedijk",
+        "categories":[]
       },
       {
         "id": "4",
         "bron": null,
         "instructies": "    1. Heat the oven to 180 C. chop up nuts and seeds as needed. Mix the oats, grated coconut, nuts and seeds together in a large bowl.\\\\n    2. Melt the coconut oil and mix in the maple syrup. Mix through the granola mixture and add a good pinch of salt.\\\\n    3. Line a baking tray with parchment and spread the granola mixture onto the paper. Put into the oven and bake for 20-22 minutes until browned, stirring through once halfway. Cool the mixture and put into an airtight container. It should stay crunchy for a good few weeks.\\\\n",
         "servings": "15",
-        "titel": "Granola"
+        "titel": "Granola",
+        "categories":[]
       },
       {
         "id": "5",
         "bron": "Budget Bytes",
         "instructies": "\\\\n    1. Remove the zest from the orange, then squeeze the juice from the orange. You\\'ll need about 1 tsp zest and 1/2 cup juice. Combine the juice and 1 tsp zest with the soy sauce, brown sugar, rice vinegar, grated ginger, minced garlic, red pepper flakes, and 1/2 Tbsp cornstarch in a small sauce pot. Before placing it over heat, whisk until the cornstarch is fully dissolved. Heat the mixture over medium-low until it begins to simmer, thicken, and turns into a glossy glaze (about 3-5 minutes). Remove the sauce from heat and set it aside.\\\\n    2. Use a sharp knife to remove any excess fat from the chicken thighs, then cut them.\\\\n    3. Combine the egg, 2 Tbsp cornstarch, and a pinch of salt and pepper in a mixing bowl and whisk until the mixture is smooth and frothy. Add the chicken pieces and stir to coat them.\\\\n    4. Heat a large skillet over medium to medium-high heat. Once hot, add 2 Tbsp cooking oil. Add the chicken, making sure all the pieces are touching the surface and not piled on top of one another. Let the pieces cook until they are golden brown on the bottom.\\\\n    5. Flip the chicken pieces, breaking them apart from one another as you turn them. Let them cook until golden brown on the second side and cooked through (about 5-7 minutes total cooking).\\\\n    6. Turn the heat off under the skillet and pour on the prepared orange sauce. Stir to coat the chicken pieces in sauce.\\\\n    7. Serve the chicken and sauce over cooked rice, garnished with sliced green onions and any left over orange zest.\\\\n",
         "servings": "4",
-        "titel": "Easy Orange Chicken"
+        "titel": "Easy Orange Chicken",
+        "categories":[]
       },
       {
         "id": "6",
         "bron": "Budget Bytes",
         "instructies": "    1 Preheat the oven to 210 degrees. Mix all of the spices for the seasoning in a bowl and set aside.\\\\n    2 Cut the onion and bell peppers into 1/4-inch wide strips. Place them in a large 13x15-inch casserole dish or a large baking sheet. Slice the chicken breast into very thin strips and add it to the casserole dish with the vegetables.\\\\n    3 Drizzle the vegetable oil over the chicken and vegetables, then sprinkle the fajita seasoning mix over top. Use your hands to toss the ingredients until everything is well coated in oil and seasoning. Bake in the preheated oven for 35-40 minutes, stirring once half way through. Squeeze the juice from half of the lime over top of the meat and vegetables after.\\\\n",
         "servings": "4",
-        "titel": "Easy Oven Fajitas"
+        "titel": "Easy Oven Fajitas",
+        "categories":[]
       },
       {
         "id": "7",
         "bron": null,
         "instructies": "    1. Verhit de olie in een grote, diepe pan en voeg het gehakt toe.\\\\n    2. Maak los met een vork en bak, samen met de pancetta en de gesnipperde uien, al omscheppend bruin en rul.\\\\n    3. Voeg de blokjes wortels en de stukjes bleekselderij toe en bak enkele minuten mee\\\\n    4. Roer de peterselie, tomatenpuree, tomaten, bouillon, witte wijn, laurier en suiker erdoor\\\\n    5. Breng het geheel aan de kook. Temper het vuur en laat de saus circa 30min zachtjes pruttelen.\\\\n",
         "servings": "4",
-        "titel": "Bolognese Saus"
+        "titel": "Bolognese Saus",
+        "categories":[]
       },
       {
         "id": "8",
         "bron": null,
         "instructies": "Marinade\\\\n    1. Mix het bier met de kruiden en leg de biefstuk daar in, laat 1 a 2 dagen marineren\\\\nJudgement day\\\\n    1. Verhit de boter in een koekenpan en bak de biefstuk kort aan.\\\\n    2. Haal uit de pan en laat een minuutje rusten\\\\n    3. Bak ondertussen de ui en de paprika op hoog vuur in de pan, goed roeren\\\\n    4. Snij de biefstuk in reepjes en voeg toe aan het uien mengsel, bak een minuut of 2 door\\\\n    5. Maak de tortilla’s warm in de magnetron\\\\n    6. Meteen uit de pan in de tortilla’s vouwen en eten enzo, spreekt voor zich\\\\n",
         "servings": "2",
-        "titel": "Biefstuk Fajitas"
+        "titel": "Biefstuk Fajitas",
+        "categories":[]
       },
       {
         "id": "9",
         "bron": null,
         "instructies": "    1 Cut the cabbage into quarters and then cut off the core. Slice crosswise into very thin strips. Also slice the green onions. Peel the carrots and then grate them on a cheese grater. Pull the cilantro leaves from the stems.\\\\n    2 Combine the shredded cabbage, green onions, carrots, cilantro, and peanuts in a large bowl and toss to mix. Pour the dressing over top and toss again. Serve immediately or refrigerate until ready to eat.\\\\n",
         "servings": "8",
-        "titel": "Crunchy Asian Salad"
+        "titel": "Crunchy Asian Salad",
+        "categories":[]
       },
       {
         "id": "10",
         "bron": null,
         "instructies": "1. Verhit de olie in een soeppan en bak het vlees bruin. Pel de uien. Ontvel de tomaten. Maal in een foodprocessor de tomaten, uien, peterselie, koriander en selderij fijn. \\\\n2. Voeg de gemalen tomaten en kruiden toe aan het gebakken vlees. Bak 2 minuten mee, voeg het water toe en breng aan de kook. Voeg de linzen, kikkererwten en specerijen toe en breng het geheel op laag vuur aan de kook. \\\\n3. Voeg, als de kikkererwten en het vlees na circa 1 uur gaar zijn, al roerend de vermicelli toe. Maak van de bloem en een scheutje koud water een papje (‘dikke Willem’) en voeg dit al roerend toe aan de soep voor de binding. Laat de soep al roerend 4 minuten koken zodat de harira bindt.\\\\n",
         "servings": "6",
-        "titel": "Harira"
+        "titel": "Harira",
+        "categories":[]
       }
     ],
     "recept_categorie": [
