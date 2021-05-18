@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ReceptService } from 'src/app/core';
 import { Recept } from 'src/app/shared/models';
+import { Categorie } from 'src/app/shared/models/categorie';
 
 @Component({
   selector: 'app-recept-detail',
@@ -23,9 +24,11 @@ export class ReceptDetailComponent implements OnInit {
         .subscribe(recept => this.recept = recept)
      }
 
-  ngOnInit(): void {
-    
-    
+  ngOnInit(): void {   
+  }
+
+  getCategories() : Categorie[] | undefined {
+    return this.recept?.categories;
   }
 
 }

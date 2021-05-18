@@ -1,2 +1,8 @@
 <p>recept-detail works!</p>
 {{recept | json}}
+{{recept?.categories}}
+<div>
+<mat-chip-list aria-label="Categories">
+    <mat-chip color="accent" *ngFor="let category of recept?.categories" selected>{{category.naam}}</mat-chip>
+  </mat-chip-list>
+  </div>
