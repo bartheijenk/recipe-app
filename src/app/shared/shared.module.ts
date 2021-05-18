@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core"
 import {CommonModule} from '@angular/common'
-import { MaterialModule } from "./components/material.module"
+import { MaterialModule } from "./components/material.module";
+import { CategorieTostringPipe } from './pipes/categorie-tostring.pipe'
+import { CoreModule } from "../core";
 
 
 // import {
@@ -10,14 +12,18 @@ import { MaterialModule } from "./components/material.module"
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule
+        MaterialModule,
+        CoreModule
     ],
     providers: [
         
     ],
-    declarations: [],
+    declarations: [
+    CategorieTostringPipe
+  ],
     exports: [
-        MaterialModule
+        MaterialModule,
+        CategorieTostringPipe
     ]
 })
 

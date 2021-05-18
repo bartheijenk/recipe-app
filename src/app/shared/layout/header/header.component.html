@@ -6,7 +6,7 @@
   </button>
     <span><h1>Recepten log</h1></span>
     <span class="spacer"></span>
-    <form class="example-form">
+    <form class="example-form" >
         <mat-form-field class="example-full-width">
           <mat-label>Search</mat-label>
           <input matInput
@@ -16,9 +16,11 @@
                  (click)="loadRecepten()">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let recept of filteredRecepten | async" [value]="recept.titel">
+              <a [routerLink]="['/recept', recept.id]">
               <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
               <span>{{recept.titel}}</span> |
               <small>Servings: {{recept.servings}}</small>
+            </a>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
