@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidenavRoutingComponent implements OnInit {
   links = [
     {name: "Home", path: "", icon: "home"},
-    {name: "Lijsten", path: "receptenlijst", icon: "list"},
+    {name: "Lijsten", path: "recepten", icon: "list"},
 ]
 
   constructor() { }

@@ -10,14 +10,12 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   
-  receptCount$!: Observable<Recept[]>;
 
   constructor(
     private receptService: ReceptService
     ) { }
 
   ngOnInit(): void {    
-    this.receptCount$ = this.receptService.getAllRecepten();
   }
 
 }
