@@ -1,8 +1,8 @@
 
 {{category | json}}
 <mat-nav-list>
-    <a mat-list-item [routerLink]="['/recept', recept.id]" *ngFor="let recept of (recepten$ | async)"> 
-        <span style="margin-right: 5px;">{{ recept.titel }} </span>
+    <a mat-list-item [routerLink]="['/recepten', recept.id]" *ngFor="let recept of (recepten$ | async)"> 
+        <span class="recept-titel">{{ recept.titel }} </span>
         <small> | Servings: {{recept.servings}} | Categorieen: {{recept.categories | categorieTostring}}
         </small>
     </a>

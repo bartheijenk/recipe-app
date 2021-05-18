@@ -4,5 +4,12 @@
 }
 
 .mat-list-item{
+    min-width: fit-content;
+    margin: auto;
+}
+
+.recept-titel {
+    margin-right: 5px;
     width: 50%;
+    font-weight: bold;
 }
