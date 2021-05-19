@@ -4,29 +4,30 @@ import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Recept } from 'src/app/shared/models';
 import { Categorie } from 'src/app/shared/models/categorie';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReceptService {
   
-  private receptUrl = 'http://localhost:3000/recept'
 
   constructor(
     private http: HttpClient
   ) { }
 
   getAllRecepten(): Observable<Recept[]> {
-    return this.http.get<Recept[]>(this.receptUrl);
+    return this.http.get<Recept[]>(environment.apiUrl);
 
   }
 
   getRecept(id: string | null): Observable<Recept> {
-    return this.http.get<Recept>(`${this.receptUrl}/${id}`);
+    return this.http.get<Recept>(`${environment.apiUrl}/${id}`);
   }
 
   searchRecept(searchTerms: string) : Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${this.receptUrl}?titel_like=${searchTerms}`)
+    return this.http.get<Recept[]>(`${environment.apiUrl}?titel_like=${searchTerms}`)
   }
 
   getReceptenByCategory(category: Categorie): Observable<Recept[]> {
