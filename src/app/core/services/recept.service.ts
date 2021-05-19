@@ -9,6 +9,7 @@ import { Categorie } from 'src/app/shared/models/categorie';
   providedIn: 'root'
 })
 export class ReceptService {
+  
   private receptUrl = 'http://localhost:3000/recept'
 
   constructor(
@@ -24,8 +25,12 @@ export class ReceptService {
     return this.http.get<Recept>(`${this.receptUrl}/${id}`);
   }
 
+  searchRecept(searchTerms: string) : Observable<Recept[]> {
+    return this.http.get<Recept[]>(`${this.receptUrl}?titel_like=${searchTerms}`)
+  }
+
   getReceptenByCategory(category: Categorie): Observable<Recept[]> {
-    //To be changed into correct REST call
+    //TODO change into correct REST call
     let output = this.getAllRecepten().pipe(
       map(r =>
         r = r.filter(recept => {

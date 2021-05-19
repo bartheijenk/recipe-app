@@ -12,10 +12,9 @@
           <input matInput
                  aria-label="Search"
                  [matAutocomplete]="auto"
-                 [formControl]="searchCtrl"
-                 (click)="loadRecepten()">
+                 [formControl]="searchCtrl">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let recept of filteredRecepten | async" [value]="recept.titel">
+            <mat-option *ngFor="let recept of filteredRecepten$ | async" [value]="recept.titel">
               <a [routerLink]="['/recept', recept.id]">
               <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
               <span>{{recept.titel}}</span> |

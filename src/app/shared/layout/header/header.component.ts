@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap, tap} from 'rxjs/operators';
 import { ReceptService } from 'src/app/core';
 import { Recept } from '../../models';
 
@@ -14,16 +14,17 @@ import { Recept } from '../../models';
 export class HeaderComponent implements OnInit {
   
   @Output() toggleSideNav = new EventEmitter();
-  recepten : Recept[] = [];
   searchCtrl = new FormControl();
-  filteredRecepten : Observable<Recept[]>;
+  filteredRecepten$ : Observable<Recept[]> | undefined;
 
 
   constructor(private receptService : ReceptService) { 
-    this.filteredRecepten = this.searchCtrl.valueChanges
+    this.filteredRecepten$ = 
+    this.searchCtrl.valueChanges
       .pipe(
-        startWith(''),
-        map(recept => recept ? this._filterRecpeten(recept) : this.recepten.slice())
+        debounceTime(200),
+        distinctUntilChanged(),
+         switchMap(terms => this.searchRecept(terms))
       );
   }
 
@@ -34,15 +35,9 @@ export class HeaderComponent implements OnInit {
     this.toggleSideNav.emit();
   }
 
-  loadRecepten() {
-    this.receptService.getAllRecepten()
-      .subscribe(r => this.recepten = r);
-  }
-
-  private _filterRecpeten(value: string) : Recept[] {
-    const filterValue = value.toLowerCase();
-
-    return this.recepten.filter(recept => recept.titel.toLowerCase().includes(filterValue))
+  private searchRecept(searchTerms: string) {
+    return this.receptService.searchRecept(searchTerms);
+    
   }
 
 }
