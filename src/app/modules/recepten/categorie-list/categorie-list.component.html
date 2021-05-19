@@ -1,0 +1,5 @@
+<mat-nav-list>
+    <a mat-list-item [routerLink]="['/recepten/lijst', categorie.id]" *ngFor="let categorie of (categorie$ | async)"> 
+        <span class="cat-titel">{{ categorie.naam }} </span>
+    </a>
+ </mat-nav-list>

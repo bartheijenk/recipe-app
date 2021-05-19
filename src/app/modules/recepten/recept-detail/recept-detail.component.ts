@@ -13,21 +13,21 @@ import { Categorie } from 'src/app/shared/models/categorie';
 })
 export class ReceptDetailComponent implements OnInit {
   recept: Recept | undefined;
-  
+
   constructor(
     private receptService: ReceptService,
     private route: ActivatedRoute
-    ) {
-      this.route.paramMap.pipe(
-        switchMap((param: ParamMap) =>
+  ) {
+    this.route.paramMap.pipe(
+      switchMap((param: ParamMap) =>
         this.receptService.getRecept(param.get('id'))))
-        .subscribe(recept => this.recept = recept)
-     }
-
-  ngOnInit(): void {   
+      .subscribe(recept => this.recept = recept)
   }
 
-  getCategories() : Categorie[] | undefined {
+  ngOnInit(): void {
+  }
+
+  getCategories(): Categorie[] | undefined {
     return this.recept?.categories;
   }
 

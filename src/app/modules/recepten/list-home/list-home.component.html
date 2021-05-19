@@ -1,5 +1,12 @@
 <h1>Recepten Lijsten</h1>
-<mat-tab-group  class="stretched-tabs" color="primary" backgroundColor="accent">
-    <mat-tab label="Alles"> <app-recept-list></app-recept-list> </mat-tab>
-    <mat-tab label="Per categorie">  </mat-tab>
-  </mat-tab-group>
+  <nav mat-tab-nav-bar class="stretched-tabs" backgroundColor="accent">
+    <a *ngFor="let link of links" mat-tab-link
+    (click)="activeLink = link.path"
+    [active]="activeLink == link.path"
+      [routerLink]="link.path"
+      routerLinkActive>
+      {{link.name}}
+    </a>
+  </nav>
+  
+  <router-outlet></router-outlet>

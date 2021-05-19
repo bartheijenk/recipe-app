@@ -9,10 +9,22 @@ import { Categorie } from 'src/app/shared/models/categorie';
   providedIn: 'root'
 })
 export class CategorieService {
-  private baseUrl = 'http://localhost:3000/'
+
+
+  private baseUrl = 'http://localhost:3000/categorie/'
 
   constructor(
     private http: HttpClient
   ) { }
 
+  getCategorie(arg0: string | null): Observable<Categorie> {
+    if (arg0 != null) {
+      return this.http.get<Categorie>(this.baseUrl + arg0);
+    }
+    return of()
+  }
+
+  getAllCategories(): Observable<Categorie[]> {
+    return this.http.get<Categorie[]>(this.baseUrl);
+  }
 }

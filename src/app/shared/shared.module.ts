@@ -23,7 +23,8 @@ import { CoreModule } from "../core";
   ],
     exports: [
         MaterialModule,
-        CategorieTostringPipe
+        CategorieTostringPipe,
+        CoreModule
     ]
 })
 

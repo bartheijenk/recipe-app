@@ -1,21 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { ReceptenRoutingModule } from './recepten-routing.module';
+import { ReceptenComponent } from './recepten.component';
+import { CategorieListComponent } from './categorie-list/categorie-list.component';
 import { ListHomeComponent } from './list-home/list-home.component';
 import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
 import { ReceptListComponent } from './recept-list/recept-list.component';
 import { SharedModule } from 'src/app/shared';
-import { RouterModule } from '@angular/router';
-import { ReceptRoutingModule } from './recepten-routing.module';
-
 
 
 @NgModule({
-  declarations: [ListHomeComponent, ReceptDetailComponent, ReceptListComponent],
+  declarations: [
+    ReceptenComponent,
+    CategorieListComponent,
+    ListHomeComponent,
+    ReceptDetailComponent,
+    ReceptListComponent
+  ],
   imports: [
     CommonModule,
-    ReceptRoutingModule,
-    SharedModule,
-    RouterModule
+    ReceptenRoutingModule,
+    SharedModule
   ]
 })
 export class ReceptenModule { }

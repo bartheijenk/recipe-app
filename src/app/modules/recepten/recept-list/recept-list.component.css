@@ -1,6 +1,5 @@
 .mat-list-item:hover{
     background-color: var(--color-accent);
-
 }
 
 .mat-list-item{
@@ -8,8 +7,16 @@
     margin: auto;
 }
 
+@media (max-width: 600px) {
+    .recept-titel {
+        width: 50%;
+    }
+}
+@media (min-width: 600px) {
+    .recept-titel {
+        width: 20%;
+    }
+}
 .recept-titel {
     margin-right: 5px;
-    width: 50%;
-    font-weight: bold;
 }
