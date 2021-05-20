@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReceptResolver } from 'src/app/core/resolvers/recept.resolver';
 import { CategorieListComponent } from './categorie-list/categorie-list.component';
 import { ListHomeComponent } from './list-home/list-home.component';
 import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
@@ -13,7 +14,10 @@ const routes: Routes = [
       { path: 'lijst/:id', component: ReceptListComponent },
       { path: 'lijst', component: ReceptListComponent, },
       { path: 'catlijst', component: CategorieListComponent },
-      { path: ':id', component: ReceptDetailComponent },
+      { path: ':id', component: ReceptDetailComponent,
+    resolve: {
+      recept: ReceptResolver
+    } },
     ]
   },
 ];

@@ -18,16 +18,16 @@ export class ReceptService {
   ) { }
 
   getAllRecepten(): Observable<Recept[]> {
-    return this.http.get<Recept[]>(environment.apiUrl);
+    return this.http.get<Recept[]>(environment.apiUrl + "recept");
 
   }
 
   getRecept(id: string | null): Observable<Recept> {
-    return this.http.get<Recept>(`${environment.apiUrl}/${id}`);
+    return this.http.get<Recept>(`${environment.apiUrl}recept/${id}`);
   }
 
   searchRecept(searchTerms: string) : Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${environment.apiUrl}?titel_like=${searchTerms}`)
+    return this.http.get<Recept[]>(`${environment.apiUrl}recept?titel_like=${searchTerms}`);
   }
 
   getReceptenByCategory(category: Categorie): Observable<Recept[]> {

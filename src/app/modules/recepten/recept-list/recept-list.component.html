@@ -1,8 +1,23 @@
+<mat-paginator [length]="(recepten$ | async)?.length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="change($event)"
+              >
+              
 
+</mat-paginator>
+<mat-nav-list>
+    <a mat-list-item [routerLink]="['/recepten', recept.id]" *ngFor="let recept of (page$ | async)"> 
+        <span class="recept-titel">{{ recept.titel }} </span>
+        <small> | Servings: {{recept.servings}} | Categorieen: {{recept.categories | categorieTostring}}
+        </small>
+    </a>
+ </mat-nav-list>
+<!-- 
 <mat-nav-list>
     <a mat-list-item [routerLink]="['/recepten', recept.id]" *ngFor="let recept of (recepten$ | async)"> 
         <span class="recept-titel">{{ recept.titel }} </span>
         <small> | Servings: {{recept.servings}} | Categorieen: {{recept.categories | categorieTostring}}
         </small>
     </a>
- </mat-nav-list>
+ </mat-nav-list> -->

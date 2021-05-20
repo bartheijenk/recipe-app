@@ -18,12 +18,12 @@ export class CategorieService {
 
   getCategorie(arg0: string | null): Observable<Categorie> {
     if (arg0 != null) {
-      return this.http.get<Categorie>(environment.apiUrl + arg0);
+      return this.http.get<Categorie>(environment.apiUrl + "categorie/" + arg0);
     }
     return of()
   }
 
   getAllCategories(): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(environment.apiUrl);
+    return this.http.get<Categorie[]>(environment.apiUrl + "categorie");
   }
 }

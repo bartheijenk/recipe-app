@@ -18,13 +18,17 @@ export class ReceptDetailComponent implements OnInit {
     private receptService: ReceptService,
     private route: ActivatedRoute
   ) {
-    this.route.paramMap.pipe(
-      switchMap((param: ParamMap) =>
-        this.receptService.getRecept(param.get('id'))))
-      .subscribe(recept => this.recept = recept)
+    
+
+    // this.route.paramMap.pipe(
+    //   switchMap((param: ParamMap) =>
+    //     this.receptService.getRecept(param.get('id'))))
+    //   .subscribe(recept => this.recept = recept)
   }
 
   ngOnInit(): void {
+    this.route.data.subscribe((response: any) => 
+    this.recept = response.recept);
   }
 
   getCategories(): Categorie[] | undefined {

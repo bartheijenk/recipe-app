@@ -1,5 +1,12 @@
-<mat-nav-list>
-    <a mat-list-item [routerLink]="['/recepten/lijst', categorie.id]" *ngFor="let categorie of (categorie$ | async)"> 
-        <span class="cat-titel">{{ categorie.naam }} </span>
-    </a>
- </mat-nav-list>
+<mat-grid-list cols="3" rowHeight="50px">
+    <mat-nav-list>
+    <mat-grid-tile *ngFor="let categorie of (categorie$ | async)">
+        
+
+            <a mat-list-item [routerLink]="['/recepten/lijst', categorie.id]">
+                <span class="cat-titel">{{ categorie.naam }} </span></a>
+        
+
+    </mat-grid-tile>
+</mat-nav-list>
+</mat-grid-list>
