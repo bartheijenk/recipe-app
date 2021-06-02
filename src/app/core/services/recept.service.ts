@@ -17,9 +17,12 @@ export class ReceptService {
     private http: HttpClient
   ) { }
 
+  getHello() : Observable<string> {
+    return this.http.get<string>("http://localhost:9080/receptweb/api/hello-world");
+  }
+
   getAllRecepten(): Observable<Recept[]> {
     return this.http.get<Recept[]>(environment.apiUrl + "recept");
-
   }
 
   getRecept(id: string | null): Observable<Recept> {
@@ -27,21 +30,6 @@ export class ReceptService {
   }
 
   searchRecept(searchTerms: string) : Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${environment.apiUrl}recept?titel_like=${searchTerms}`);
-  }
-
-  getReceptenByCategory(category: Categorie): Observable<Recept[]> {
-    //TODO change into correct REST call
-    let output = this.getAllRecepten().pipe(
-      map(r =>
-        r = r.filter(recept => {
-          if(recept.categories.find(c => c.id == category.id) != undefined) {
-            return true;
-          } else {
-            return false;
-          }
-        })
-      ));
-    return output;
+    return this.http.get<Recept[]>(`${environment.apiUrl}recept?q=${searchTerms}`);
   }
 }

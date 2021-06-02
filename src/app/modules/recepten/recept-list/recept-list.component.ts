@@ -25,14 +25,13 @@ export class ReceptListComponent implements OnInit {
     private receptService: ReceptService,
     private categorieService: CategorieService,
     private route: ActivatedRoute,
-    private changeDetectorRef : ChangeDetectorRef 
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.route.paramMap.pipe(
       switchMap((param: ParamMap) => {
         let id = param.get("id");
-        console.log(id);
         let cat = this.categorieService.getCategorie(id);
-        if(id == null) {
+        if (id == null) {
           this.getAllRecepten();
         } else {
           this.getReceptenByCategory(cat);
@@ -49,19 +48,19 @@ export class ReceptListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   getReceptenByCategory(category: Observable<Categorie>) {
     category.subscribe(c => {
-      this.recepten$ = this.receptService.getReceptenByCategory(c);
+      this.recepten$ = this.categorieService.getReceptenByCategory(c);
       this.updatePage(0, this.pageSize);
-  })
+    })
     // this.recepten$ = this.receptService.getReceptenByCategory(category);
   }
 
-  getAllRecepten(): void {    
-    this.recepten$ = this.receptService.getAllRecepten();    
+  getAllRecepten(): void {
+    this.recepten$ = this.receptService.getAllRecepten();
     this.updatePage(0, this.pageSize);
   }
 

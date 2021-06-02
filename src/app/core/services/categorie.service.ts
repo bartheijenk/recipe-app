@@ -26,4 +26,10 @@ export class CategorieService {
   getAllCategories(): Observable<Categorie[]> {
     return this.http.get<Categorie[]>(environment.apiUrl + "categorie");
   }
+
+  
+
+  getReceptenByCategory(category: Categorie): Observable<Recept[]> {
+    return this.http.get<Recept[]>(`${environment.apiUrl}categorie/${category.id}/recept`);
+  }
 }

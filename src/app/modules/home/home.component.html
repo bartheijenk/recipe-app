@@ -1,9 +1,13 @@
 <mat-grid-list cols="2" rowHeight="4:1">
     <mat-grid-tile colspan=2>
         <h1>Welkom op de Recepten Log!</h1>
+        {{ hello | async}}
     </mat-grid-tile>
     <mat-grid-tile>
-        <app-statistics></app-statistics>
+        <!-- <app-statistics></app-statistics> -->
+        
+    </mat-grid-tile>
+    <mat-grid-tile>
         
     </mat-grid-tile>
 </mat-grid-list>

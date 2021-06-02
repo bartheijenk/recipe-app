@@ -9,11 +9,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+  hello: Observable<string>;
 
   constructor(
     private receptService: ReceptService
-    ) { }
+    ) {
+      this.hello = receptService.getHello();
+     }
 
   ngOnInit(): void {    
   }
