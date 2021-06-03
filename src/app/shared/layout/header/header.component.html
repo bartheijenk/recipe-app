@@ -1,31 +1,26 @@
-
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="marginright" aria-label="Example icon-button with menu icon" 
-    (click)="toggleSide()">
+<mat-toolbar color="primary">
+  <button mat-icon-button class="marginright" aria-label="Example icon-button with menu icon" (click)="toggleSide()">
     <mat-icon>menu</mat-icon>
   </button>
-    <span><h1>Recepten log</h1></span>
-    <span class="spacer"></span>
-    <form class="search-bar" >
-        <mat-form-field class="example-full-width">
-          <mat-label>Search</mat-label>
-          <input matInput
-                 aria-label="Search"
-                 [matAutocomplete]="auto"
-                 [formControl]="searchCtrl">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let recept of filteredRecepten$ | async" [value]="recept.titel">
-              <a [routerLink]="['/recepten', recept.id]">
-              <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
-              <span>{{recept.titel}}</span> |
-              <small>Servings: {{recept.servings}}</small>
-            </a>
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-    </form>
+  <span>
+    <h1>Recepten log</h1>
+  </span>
+  <span class="spacer"></span>
+  <form class="search-bar">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search</mat-label>
+      <input matInput aria-label="Search" [matAutocomplete]="auto" [formControl]="searchCtrl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let recept of filteredRecepten$ | async" [value]="recept.titel">
+          <a [routerLink]="['/recepten', recept.id]">
+            <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
+            <span>{{recept.titel}}</span> |
+            <small>Servings: {{recept.servings}}</small>
+          </a>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
 
 
-    </mat-toolbar>
-
-
+</mat-toolbar>

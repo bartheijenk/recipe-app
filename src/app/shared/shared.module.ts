@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common'
 import { MaterialModule } from "./components/material.module";
 import { CategorieTostringPipe } from './pipes/categorie-tostring.pipe'
 import { CoreModule } from "../core";
+import { NewlinesPipe } from './pipes/newlines.pipe';
 
 
 // import {
@@ -19,11 +20,13 @@ import { CoreModule } from "../core";
         
     ],
     declarations: [
-    CategorieTostringPipe
+    CategorieTostringPipe,
+    NewlinesPipe
   ],
     exports: [
         MaterialModule,
         CategorieTostringPipe,
+        NewlinesPipe,
         CoreModule
     ]
 })

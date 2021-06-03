@@ -8,6 +8,7 @@ import { ListHomeComponent } from './list-home/list-home.component';
 import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
 import { ReceptListComponent } from './recept-list/recept-list.component';
 import { SharedModule } from 'src/app/shared';
+import { ReceptInvoerComponent } from './recept-invoer/recept-invoer.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared';
     CategorieListComponent,
     ListHomeComponent,
     ReceptDetailComponent,
-    ReceptListComponent
+    ReceptListComponent,
+    ReceptInvoerComponent
   ],
   imports: [
     CommonModule,

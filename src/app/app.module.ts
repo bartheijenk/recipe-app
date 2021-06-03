@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module'
 import { MaterialModule } from './shared/components/material.module';
 import { LayoutModule } from './shared/layout/layout.module';
 import { SharedModule } from './shared';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthorizationInterceptor } from './core/interceptors/authorization.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { SharedModule } from './shared';
     SharedModule,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

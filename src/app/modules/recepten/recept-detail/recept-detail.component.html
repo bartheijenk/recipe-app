@@ -1,17 +1,25 @@
-
 <!-- {{recept | json}} -->
 <!-- {{recept?.categories}} -->
-<div>
-  <h1>{{ recept?.titel}}</h1>
-  
-<mat-chip-list aria-label="Categories">
-  <mat-chip color="accent" *ngFor="let category of recept?.categories" [routerLink]="['/recepten/lijst', category.id]" selected>{{category.naam}}</mat-chip>
-</mat-chip-list>
-<p>Servings: {{recept?.servings}}</p>
-  <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let ingInRec of recept?.ingredienten">
-     {{ingInRec.hoeveelheid}} {{ingInRec.eenheid}} {{ingInRec.ingredient.naam}}, {{ingInRec.instructie}}
-    </mat-list-item>>
-  </mat-list>>
-  <p>{{recept?.instructies}}</p>
+<div class="container">
+  <h1 style="margin: 5px;">{{ recept?.titel}}</h1>
+  <mat-chip-list aria-label="Categories">
+    <mat-chip color="accent" *ngFor="let category of recept?.categories" [routerLink]="['/recepten/lijst', category.id]"
+      selected>{{category.naam}}</mat-chip>
+  </mat-chip-list>
+  <p style="margin: 5px;">Servings: {{recept?.servings}}</p>
+  <div style="height: 80%;">
+    <mat-grid-list cols="4" rowHeight="1:2">
+      <mat-grid-tile>
+        <mat-list role="list">
+          <mat-list-item role="listitem" *ngFor="let ingInRec of recept?.ingredienten">
+            {{ingInRec.hoeveelheid}} {{ingInRec.eenheid}} {{ingInRec.ingredient.naam}}, {{ingInRec.instructie}}
+          </mat-list-item>
+        </mat-list>
+
+      </mat-grid-tile>
+      <mat-grid-tile colspan=3 class="instructie-width">
+        <div class="text-inside-grid" [innerHtml]="(recept?.instructies | newlines)"></div>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
+</div>

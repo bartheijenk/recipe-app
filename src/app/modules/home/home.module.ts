@@ -7,18 +7,25 @@ import { MaterialModule, SharedModule } from 'src/app/shared';
 import { CoreModule } from 'src/app/core';
 import { RouterModule } from '@angular/router';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

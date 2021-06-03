@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav-routing',
@@ -7,13 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavRoutingComponent implements OnInit {
   links = [
-    {name: "Home", path: "", icon: "home"},
-    {name: "Lijsten", path: "recepten", icon: "list"},
-]
+    { name: "Home", path: "", icon: "home" },
+    { name: "Lijsten", path: "recepten", icon: "list" },
+    { name: "Recept Invoeren", path: "invoer", icon: "create"}
+  ];
+
+  
+  @Output() toggleSideNav = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleSide() {
+    this.toggleSideNav.emit();
   }
 
 }

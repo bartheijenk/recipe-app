@@ -1,0 +1,14 @@
+
+.text-inside-grid{
+    vertical-align: text-top;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.instructie-width{
+    max-width: 60%;
+}
+
+.container {
+    overflow: auto;
+}

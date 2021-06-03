@@ -1,20 +1,16 @@
 
-
-<app-header
-    (toggleSideNav)="sidenav.toggle()"
-    ></app-header>
-<mat-sidenav-container >
+    <app-header (toggleSideNav)="sidenav.toggle()" class="top-align"></app-header>
+<mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-    <app-sidenav-routing></app-sidenav-routing>
+    <app-sidenav-routing (toggleSideNav)="sidenav.toggle()"></app-sidenav-routing>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <div class="container">
 
-    <router-outlet class="stretch-tofill"></router-outlet>
-  </div>
-   
-<app-footer id="bottom-align"></app-footer>
+      <router-outlet class="stretch-tofill"></router-outlet>
+    </div>
+
+    <app-footer id="bottom-align"></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
