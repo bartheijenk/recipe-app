@@ -18,18 +18,18 @@ export class CategorieService {
 
   getCategorie(arg0: string | null): Observable<Categorie> {
     if (arg0 != null) {
-      return this.http.get<Categorie>(environment.apiUrl + "categorie/" + arg0);
+      return this.http.get<Categorie>(environment.apiUrl + "categories/" + arg0);
     }
     return of()
   }
 
   getAllCategories(): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(environment.apiUrl + "categorie");
+    return this.http.get<Categorie[]>(environment.apiUrl + "categories");
   }
 
   
 
   getReceptenByCategory(category: Categorie): Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${environment.apiUrl}categorie/${category.id}/recept`);
+    return this.http.get<Recept[]>(`${environment.apiUrl}categories/${category.id}/recepten`);
   }
 }

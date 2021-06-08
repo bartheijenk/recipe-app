@@ -1,14 +1,19 @@
 
 .text-inside-grid{
     vertical-align: text-top;
-    font-size: 20px;
     line-height: 1.6;
 }
 
 .instructie-width{
     max-width: 60%;
+    overflow-y: auto;
+}
+.test {
+    overflow-y: auto;
 }
 
-.container {
-    overflow: auto;
+mat-grid-tile {
+    overflow-y: auto;
+    border: black;
+    border-style: solid;
 }

@@ -7,19 +7,21 @@
       selected>{{category.naam}}</mat-chip>
   </mat-chip-list>
   <p style="margin: 5px;">Servings: {{recept?.servings}}</p>
-  <div style="height: 80%;">
-    <mat-grid-list cols="4" rowHeight="1:2">
-      <mat-grid-tile>
-        <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let ingInRec of recept?.ingredienten">
-            {{ingInRec.hoeveelheid}} {{ingInRec.eenheid}} {{ingInRec.ingredient.naam}}, {{ingInRec.instructie}}
-          </mat-list-item>
-        </mat-list>
 
-      </mat-grid-tile>
-      <mat-grid-tile colspan=3 class="instructie-width">
-        <div class="text-inside-grid" [innerHtml]="(recept?.instructies | newlines)"></div>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div>
-</div>
+  <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
+    <mat-grid-tile [colspan]="colspanIngr">
+      <!-- <mat-list role="list"> -->
+      <ul style="list-style-type:none; padding-left: 0;">
+        <li *ngFor="let ingInRec of recept?.ingredienten">
+          <!-- <mat-list-item role="listitem" *ngFor="let ingInRec of recept?.ingredienten"> -->
+          {{ingInRec.hoeveelheid}} {{ingInRec.eenheid}} {{ingInRec.ingredient.naam}}, {{ingInRec.instructie}}
+          <!-- </mat-list-item> -->
+        </li>
+      </ul>
+      <!-- </mat-list> -->
+
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="colspanInst" class="instructie-width">
+      <div class="text-inside-grid" [innerHtml]="(recept?.instructies | newlines)"></div>
+    </mat-grid-tile>
+  </mat-grid-list>

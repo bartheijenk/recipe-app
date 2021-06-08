@@ -22,14 +22,14 @@ export class ReceptService {
   }
 
   getAllRecepten(): Observable<Recept[]> {
-    return this.http.get<Recept[]>(environment.apiUrl + "recept");
+    return this.http.get<Recept[]>(environment.apiUrl + "recepten");
   }
 
   getRecept(id: string | null): Observable<Recept> {
-    return this.http.get<Recept>(`${environment.apiUrl}recept/${id}`);
+    return this.http.get<Recept>(`${environment.apiUrl}recepten/${id}`);
   }
 
   searchRecept(searchTerms: string) : Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${environment.apiUrl}recept?q=${searchTerms}`);
+    return this.http.get<Recept[]>(`${environment.apiUrl}recepten?q=${searchTerms}`);
   }
 }
