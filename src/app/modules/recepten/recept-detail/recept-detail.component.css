@@ -1,19 +1,11 @@
-
-.text-inside-grid{
-    vertical-align: text-top;
-    line-height: 1.6;
+.instructies{
+    margin: 5px;
 }
 
-.instructie-width{
-    max-width: 60%;
-    overflow-y: auto;
-}
-.test {
-    overflow-y: auto;
+ul{
+    list-style-type:none; 
 }
 
-mat-grid-tile {
-    overflow-y: auto;
-    border: black;
-    border-style: solid;
+.servings{
+    margin: 5px;
 }

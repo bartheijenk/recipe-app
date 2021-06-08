@@ -1,12 +1,12 @@
-
-        <h1>Welkom op de Recepten Log!</h1>
-<mat-grid-list cols="2" rowHeight="4:1">
-    <mat-grid-tile>
+<h1>Welkom op de Recepten Log!</h1>
+<div class="container">
+       
+    <div >
         <ul>
             <li *ngFor="let recept of (random | async)">{{recept.titel}}</li>
         </ul>
-    </mat-grid-tile>
-    <mat-grid-tile>
+    </div>
+    <div >
         test
-    </mat-grid-tile>
-</mat-grid-list>
+    </div>
+</div>

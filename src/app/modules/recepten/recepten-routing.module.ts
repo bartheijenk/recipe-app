@@ -10,22 +10,27 @@ import { ReceptListComponent } from './recept-list/recept-list.component';
 import { ReceptenComponent } from './recepten.component';
 
 const routes: Routes = [
-  
+
   {
-    path: '', component: ListHomeComponent,
+    path: '', component: ReceptenComponent,
     children: [
-      { path: 'lijst/:id', component: ReceptListComponent },
-      { path: 'lijst', component: ReceptListComponent, },
-      { path: 'catlijst', component: CategorieListComponent },
-      
-      { path: ':id', component: ReceptDetailComponent,
-    resolve: {
-      recept: ReceptResolver
-    } },
-    
+      {
+        path: '', component: ListHomeComponent, children: [
+          { path: 'lijst/:id', component: ReceptListComponent },
+          { path: 'lijst', component: ReceptListComponent, },
+          { path: 'catlijst', component: CategorieListComponent },
+        ]
+      },
+      {
+        path: ':id', component: ReceptDetailComponent,
+        resolve: {
+          recept: ReceptResolver
+        }
+      },
+
     ]
   },
-  
+
 ];
 
 @NgModule({

@@ -1,18 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "custom-theme";
-// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 html, body { height: 100%; }
-body { margin: 0; 
+body { margin:0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     font-size: larger;
     overflow: hidden;
 }
 
-.mat-grid-tile .mat-figure {
-    justify-content: flex-start !important ;
-    align-items: flex-start !important;
- }
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding-bottom: 50px;
+}
 
+h1{
+    padding: 10px;
+}
+
+p {
+    padding-left: 10px;
+}
 

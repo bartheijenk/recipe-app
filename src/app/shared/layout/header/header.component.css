@@ -5,17 +5,15 @@
 .marginright {
     margin-right: 10px;
 }
-.example-form {
-    max-width: 500px;
-    width: 100%;
-  }
   
   .example-full-width {
     width: 100%;
   }
-  
-  .example-option-img {
-    vertical-align: middle;
-    margin-right: 8px;
+
+  @media (max-width: 600px) {
+    .search-bar{
+      visibility: hidden;
+    }
+    
   }
   
