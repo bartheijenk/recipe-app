@@ -1,13 +1,20 @@
-<h2>Log in</h2>
-<form (submit)="login()" novalidate #f="ngForm">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="text" id="password" name="password" [(ngModel)]="user.password" required>
-    <button [disabled]="f.invalid">Ok</button>
-  </div>
-</form>
+<mat-card>
+  <mat-card-title>Log in</mat-card-title>
+  <mat-card-content>
+    <form (submit)="login()" novalidate #f="ngForm">
+      <mat-form-field>
+        <mat-label for="username">Username:</mat-label>
+        <input matInput type="text" id="username" name="username" [(ngModel)]="user.username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="password">Password:</mat-label>
+        <input matInput type="password" id="password" name="password" [(ngModel)]="user.password" required>
+      </mat-form-field>
+      <div>
+        <button mat-button [disabled]="f.invalid">Login</button>
+      </div>
+    </form>
+  </mat-card-content>
+
+</mat-card>
 <p>{{message$ | async}}</p>

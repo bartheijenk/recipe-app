@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/core/services/user.service';
@@ -18,12 +19,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.route.queryParamMap.pipe(
       map((param: ParamMap) => {
         let ret = param.get("returnUrl");
-        if(ret == null) {
+        if (ret == null) {
           this.returnUrl = "";
         } else {
           this.returnUrl = ret;
@@ -37,8 +39,9 @@ export class LoginComponent implements OnInit {
     this.user = {} as User;
     this.message$.subscribe(
       m => {
+        this.snackBar.open(m, undefined, { duration: 3000 })
         if (m.includes("ingelogd")) {
-          this.router.navigate([this.returnUrl])
+          this.router.navigate([this.returnUrl]);
         }
       }
     )
