@@ -23,14 +23,12 @@ mat-sidenav-container {
     min-height: 100%;
     width: 100%;
     min-width: 100%;
+    
+    padding-bottom: 100px;
      }
 
  mat-sidenav-content {
      position: absolute;
      width: 100%;
      overflow-y: auto;
- }
-
- app-footer {
-     padding-top: 100px;
  }
