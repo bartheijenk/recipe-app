@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
   { path: 'recepten', loadChildren: () => import('./modules/recepten/recepten.module').then(m => m.ReceptenModule) },
   {
-    path: 'invoer', component: ReceptInvoerComponent, canActivate: [AuthGuard],
+    path: 'invoer', component: ReceptInvoerComponent, /*canActivate: [AuthGuard],*/
     children: [
       { path: ':id', component: ReceptInvoerComponent, resolve: { recept: ReceptResolver } }
     ]

@@ -1,12 +1,14 @@
 <h1>{{ recept?.titel}}</h1>
 <p class="servings">Servings: {{recept?.servings}}</p>
 <mat-chip-list aria-label="Categories">
-  <mat-chip color="accent" *ngFor="let category of recept?.categories" [routerLink]="['/recepten/lijst', category.id]"
-    selected>{{category.naam}}</mat-chip>
+  <div class="container">
+    <mat-chip color="accent" *ngFor="let category of recept?.categories" [routerLink]="['/recepten/lijst', category.id]"
+      selected>{{category.naam}}</mat-chip>
+  </div>
 </mat-chip-list>
 
 <div class="container">
-  
+
   <div class="ingredienten">
     <h3>Ingredienten</h3>
     <ul>

@@ -9,6 +9,7 @@ import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
 import { ReceptListComponent } from './recept-list/recept-list.component';
 import { SharedModule } from 'src/app/shared';
 import { ReceptInvoerComponent } from './recept-invoer/recept-invoer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ReceptInvoerComponent } from './recept-invoer/recept-invoer.component';
   imports: [
     CommonModule,
     ReceptenRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class ReceptenModule { }

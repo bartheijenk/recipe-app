@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ReceptService {
   
+  
 
   constructor(
     private http: HttpClient
@@ -31,5 +32,9 @@ export class ReceptService {
 
   searchRecept(searchTerms: string) : Observable<Recept[]> {
     return this.http.get<Recept[]>(`${environment.apiUrl}recepten?q=${searchTerms}`);
+  }
+
+  saveRecept(recept: Recept) {
+    return this.http.post<Recept>(environment.apiUrl + "recepten", recept);
   }
 }

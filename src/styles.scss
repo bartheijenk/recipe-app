@@ -2,25 +2,32 @@
 
 @import "custom-theme";
 
-html, body { height: 100%; }
+html, body { height: 100%;
+min-height: 100%; }
 body { margin:0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     font-size: larger;
     overflow: hidden;
+    padding-bottom: 50px;
 }
 
 .container {
     display: flex;
     justify-content: center;
     margin: 10px;
-    padding-bottom: 50px;
+    flex-wrap: wrap;
 }
 
 h1{
     padding: 10px;
+    text-align: center;
 }
 
 p {
     padding-left: 10px;
 }
+
+//  div{
+//     border:1px solid black !important;
+//  }
 

@@ -1,7 +1,7 @@
 import { Ingredient } from ".";
 
 export interface ReceptIngredient {
-    id: number;
+    id: number | null;
     hoeveelheid: number;
     eenheid: string;
     instructie: string;

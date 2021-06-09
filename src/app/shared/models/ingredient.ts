@@ -1,8 +1,8 @@
 import { Recept } from "./recept";
 
 export interface Ingredient {
-    id: number;
+    id: number | null;
     naam: string;
-    calorienPerHonder: string;
-    isRecept: Recept;
+    calorienPerHonderd: string;
+    isRecept: Recept | null;
 }

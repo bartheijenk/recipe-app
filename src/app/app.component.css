@@ -1,6 +1,11 @@
 #bottom-align {
-    position: fixed;
-    bottom: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        padding-top: 60px;
+      
 }
 
 .stretch-tofill {
@@ -18,10 +23,14 @@ mat-sidenav-container {
     min-height: 100%;
     width: 100%;
     min-width: 100%;
- }
+     }
 
  mat-sidenav-content {
      position: absolute;
      width: 100%;
      overflow-y: auto;
+ }
+
+ app-footer {
+     padding-top: 100px;
  }

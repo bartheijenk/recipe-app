@@ -1,7 +1,7 @@
 import { Categorie } from "./categorie";
 import { ReceptIngredient } from "./recept-ingredient";
 
-export interface Recept {
+export class Recept {
     id: number;
     titel: string;
     servings: number;
