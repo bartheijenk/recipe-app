@@ -12,9 +12,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ReceptService {
-  searchByQuery(backendQuery: SearchQuery): Observable<Recept[]> | undefined {
-    throw new Error('Method not implemented.');
-  }
+  
   
   
 
@@ -26,19 +24,26 @@ export class ReceptService {
     return this.http.get<string>("http://localhost:9080/receptweb/api/hello-world");
   }
 
+  private readonly uri = environment.apiUrl + "recepten";
+
   getAllRecepten(): Observable<Recept[]> {
-    return this.http.get<Recept[]>(environment.apiUrl + "recepten");
+    return this.http.get<Recept[]>(this.uri);
   }
 
   getRecept(id: string | null): Observable<Recept> {
-    return this.http.get<Recept>(`${environment.apiUrl}recepten/${id}`);
+    return this.http.get<Recept>(`${this.uri}/${id}`);
   }
 
   searchRecept(searchTerms: string) : Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${environment.apiUrl}recepten?q=${searchTerms}`);
+    return this.http.get<Recept[]>(`${this.uri}?q=${searchTerms}`);
   }
 
   saveRecept(recept: Recept) {
-    return this.http.post<Recept>(environment.apiUrl + "recepten", recept);
+    return this.http.post<Recept>(this.uri, recept);
+  }
+  
+  searchByQuery(backendQuery: SearchQuery): Observable<Recept[]> {
+    console.log(this.uri + backendQuery.createQueryAsString());
+    return this.http.get<Recept[]>(this.uri + backendQuery.createQueryAsString())
   }
 }

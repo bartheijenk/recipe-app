@@ -28,56 +28,65 @@ export class ReceptListComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.queryParamMap.subscribe((param) => {
-      console.log(param);
       if (param.has("catId")) {
         this.categorie$ = this.categorieService.getCategorie(param.get("catId"));
       }
-
       let backendQuery = new SearchQuery();
-      if (param.has("q")) {
-        let q = param.get("q");
-        backendQuery.q = q as string;
+      if (param.has("filter")) {
+        backendQuery = this.parseQuery(param);
       }
-      if (param.has("cats")) {
-        let cats = param.getAll("cats");
-        backendQuery.cats = cats;
-      }
-      if (param.has("ingr")) {
-        let ingr = param.getAll("ingr");
-        backendQuery.ingr = ingr;
-      }
-      if (param.has("maxSer") && param.has("minSer")) {
-        backendQuery.minSer = parseInt(param.get("minSer") as string);
-        backendQuery.maxSer = parseInt(param.get("maxSer") as string);
-      }
-      if (param.has("bron")) {
-        backendQuery.bron = param.getAll("bron");
-      }
-      if (backendQuery.isEmpty()) {
-        if (param.has("catId")) {
-          this.getReceptenByCategory(this.categorie$);
-          console.log("categorie found");
-        } else {
-          this.getAllRecepten();
-          console.log("nothing found getting all recipes")
-        }
-      } else {
-        console.log("query found!")
-        this.recepten$ = this.receptService.searchByQuery(backendQuery);
-      }
-    });
-    this.recepten$?.subscribe();
-  }
 
-  private updatePage(startIndex: number, endIndex: number) {
-    this.page$ = this.recepten$?.pipe(
-      map(r => r.slice(startIndex, endIndex))
-    );
+      this.fillRecepten(backendQuery, param);
+    });
   }
 
   ngOnInit(): void {
 
   }
+
+  private fillRecepten(backendQuery: SearchQuery, param: ParamMap) {
+    if (backendQuery.isEmpty()) {
+      if (param.has("catId")) {
+        this.getReceptenByCategory(this.categorie$);
+        console.log("categorie found");
+      } else {
+        this.getAllRecepten();
+        console.log("nothing found getting all recipes");
+      }
+    } else {
+      console.log("query found!");
+      this.recepten$ = this.receptService.searchByQuery(backendQuery);
+      this.updatePage(0, this.pageSize);
+    }
+  }
+
+  private parseQuery(param: ParamMap) {
+    let backendQuery = new SearchQuery();
+    if (param.has("filter")) {
+      let filter = param.get("filter");
+      backendQuery.filter = (filter as string == "true");
+    }
+    if (param.has("cats")) {
+      let cats = param.getAll("cats");
+      backendQuery.cats = cats;
+    }
+    if (param.has("ingr")) {
+      let ingr = param.getAll("ingr");
+      backendQuery.ingr = ingr;
+    }
+    if (param.has("maxSer") && param.has("minSer")) {
+      backendQuery.minSer = parseInt(param.get("minSer") as string);
+      backendQuery.maxSer = parseInt(param.get("maxSer") as string);
+    }
+    if (param.has("bron")) {
+      backendQuery.bron = param.getAll("bron");
+    }
+    return backendQuery;
+  }
+
+ 
+
+  
 
   getReceptenByCategory(category: Observable<Categorie>) {
     category.subscribe(c => {
@@ -93,6 +102,12 @@ export class ReceptListComponent implements OnInit {
 
   change(event: PageEvent) {
     this.updatePage(event.pageIndex * event.pageSize, (event.pageIndex + 1) * event.pageSize);
+  }
+
+  private updatePage(startIndex: number, endIndex: number) {
+    this.page$ = this.recepten$?.pipe(
+      map(r => r.slice(startIndex, endIndex))
+    );
   }
 
 }
