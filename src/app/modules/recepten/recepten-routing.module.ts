@@ -16,7 +16,6 @@ const routes: Routes = [
     children: [
       {
         path: '', component: ListHomeComponent, children: [
-          { path: 'lijst/:id', component: ReceptListComponent },
           { path: 'lijst', component: ReceptListComponent, },
           { path: 'catlijst', component: CategorieListComponent },
         ]

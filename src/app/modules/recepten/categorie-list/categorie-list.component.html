@@ -3,7 +3,7 @@
         <mat-grid-tile *ngFor="let categorie of (categorie$ | async)">
 
 
-            <a mat-list-item [routerLink]="['/recepten/lijst', categorie.id]">
+            <a mat-list-item [routerLink]="['/recepten/lijst']" [queryParams]="{catId: categorie.id}">
                 <span class="cat-titel">{{ categorie.naam }} </span></a>
 
 

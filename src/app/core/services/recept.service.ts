@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Recept } from 'src/app/shared/models';
 import { Categorie } from 'src/app/shared/models/categorie';
+import { SearchQuery } from 'src/app/shared/models/searchQuery';
 import { environment } from 'src/environments/environment';
 
 
@@ -11,6 +12,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ReceptService {
+  searchByQuery(backendQuery: SearchQuery): Observable<Recept[]> | undefined {
+    throw new Error('Method not implemented.');
+  }
   
   
 
