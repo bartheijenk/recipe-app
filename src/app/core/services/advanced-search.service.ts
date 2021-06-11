@@ -93,14 +93,16 @@ export class AdvancedSearchService {
 
   updateQuery(q :string) {
     this._searchQuery.q = q;
+    console.log(this._searchQuery)
+    this._receptenSub$.next(this.receptService.searchByQuery(this._searchQuery));
   }
 
   updateFilter(searchQuery : SearchQuery) {
-    // console.log(searchQuery)
     if(!searchQuery.q) {
       searchQuery.q = this._searchQuery.q
     }
     searchQuery.filter = true;
+    this._searchQuery = searchQuery;
     this._receptenSub$.next(this.receptService.searchByQuery(searchQuery));
   }
 }

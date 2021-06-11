@@ -1,5 +1,12 @@
+<h1>Advanced Search</h1>
+
+
 <mat-drawer-container>
+    
     <mat-drawer mode="side" opened>
+    <mat-label>Search</mat-label>
+    <input [(ngModel)]="queryString">
+    <button mat-button (click)="updateQuery()" >search</button>
         <app-recept-filters></app-recept-filters>
     </mat-drawer>
     <mat-drawer-content>

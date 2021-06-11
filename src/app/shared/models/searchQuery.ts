@@ -14,7 +14,7 @@ export class SearchQuery {
     public createQueryAsString(): string {
         let queryString = "?";
         if(this.q) {
-            queryString = queryString.concat("q=");
+            queryString = queryString.concat("q=" + this.q);
         }
         if (this.filter) {
             queryString = queryString.concat(this.q ? "&filter=true" : "filter=true");

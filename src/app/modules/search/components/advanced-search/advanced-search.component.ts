@@ -8,6 +8,8 @@ import { AdvancedSearchService } from 'src/app/core';
 })
 export class AdvancedSearchComponent implements OnInit {
 
+  queryString: string;
+
   constructor(
     private searchService: AdvancedSearchService
   ) { }
@@ -15,7 +17,7 @@ export class AdvancedSearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateFilters() {
-    
+  updateQuery() {
+    this.searchService.updateQuery(this.queryString);
   }
 }
