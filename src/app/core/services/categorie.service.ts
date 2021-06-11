@@ -17,7 +17,7 @@ export class CategorieService {
 
   getCategorie(arg0: string | null): Observable<Categorie> {
     if (arg0 != null) {
-      return this.http.get<Categorie>(this.uri + arg0);
+      return this.http.get<Categorie>(this.uri + "/" + arg0);
     }
     return of()
   }
@@ -28,7 +28,7 @@ export class CategorieService {
 
   
 
-  getReceptenByCategory(category: Categorie): Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${this.uri}/${category.id}/recepten`);
+  getReceptenByCategory(catId: number): Observable<Recept[]> {
+    return this.http.get<Recept[]>(`${this.uri}/${catId}/recepten`);
   }
 }

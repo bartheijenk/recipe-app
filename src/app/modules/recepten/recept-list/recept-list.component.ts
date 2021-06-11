@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map} from 'rxjs/operators';
-import { CategorieService, ReceptService } from 'src/app/core';
+import { map } from 'rxjs/operators';
+import { AdvancedSearchService, CategorieService, ReceptService } from 'src/app/core';
 import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
 
 @Component({
@@ -12,96 +12,33 @@ import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
   styleUrls: ['./recept-list.component.css']
 })
 export class ReceptListComponent implements OnInit {
-  categorie$: Observable<Categorie>;
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
-  recepten$: Observable<Recept[]> | undefined;
   page$: Observable<Recept[]> | undefined;
 
 
   constructor(
-    private receptService: ReceptService,
-    private categorieService: CategorieService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private searchService: AdvancedSearchService
   ) {
-    this.route.queryParamMap.subscribe((param) => {
-      if (param.has("catId")) {
-        this.categorie$ = this.categorieService.getCategorie(param.get("catId"));
-      }
-      let backendQuery = new SearchQuery();
-      if (param.has("filter")) {
-        backendQuery = this.parseQuery(param);
-      }
-
-      this.fillRecepten(backendQuery, param);
-    });
   }
 
   ngOnInit(): void {
-
+    this.route.queryParamMap.subscribe((param) => {
+      this.searchService.initReceptenLijst(param)
+      .subscribe(c => this.updatePage(0, this.pageSize));
+         });
   }
 
-  private fillRecepten(backendQuery: SearchQuery, param: ParamMap) {
-    if (backendQuery.isEmpty()) {
-      if (param.has("catId")) {
-        this.getReceptenByCategory(this.categorie$);
-        console.log("categorie found");
-      } else {
-        this.getAllRecepten();
-        console.log("nothing found getting all recipes");
-      }
-    } else {
-      console.log("query found!");
-      this.recepten$ = this.receptService.searchByQuery(backendQuery);
-      this.updatePage(0, this.pageSize);
-    }
-  }
-
-  private parseQuery(param: ParamMap) {
-    let backendQuery = new SearchQuery();
-    if (param.has("filter")) {
-      let filter = param.get("filter");
-      backendQuery.filter = (filter as string == "true");
-    }
-    if (param.has("cats")) {
-      let cats = param.getAll("cats");
-      backendQuery.cats = cats;
-    }
-    if (param.has("ingr")) {
-      let ingr = param.getAll("ingr");
-      backendQuery.ingr = ingr;
-    }
-    if (param.has("maxSer") && param.has("minSer")) {
-      backendQuery.minSer = parseInt(param.get("minSer") as string);
-      backendQuery.maxSer = parseInt(param.get("maxSer") as string);
-    }
-    if (param.has("bron")) {
-      backendQuery.bron = param.getAll("bron");
-    }
-    return backendQuery;
-  }
-
- 
-
-  
-
-  getReceptenByCategory(category: Observable<Categorie>) {
-    category.subscribe(c => {
-      this.recepten$ = this.categorieService.getReceptenByCategory(c);
-      this.updatePage(0, this.pageSize);
-    })
-  }
-
-  getAllRecepten(): void {
-    this.recepten$ = this.receptService.getAllRecepten();
-    this.updatePage(0, this.pageSize);
+  get recepten$(): Observable<Recept[]> {     
+    return this.searchService._recepten$;
   }
 
   change(event: PageEvent) {
     this.updatePage(event.pageIndex * event.pageSize, (event.pageIndex + 1) * event.pageSize);
   }
 
-  private updatePage(startIndex: number, endIndex: number) {
+  public updatePage(startIndex: number, endIndex: number) {
     this.page$ = this.recepten$?.pipe(
       map(r => r.slice(startIndex, endIndex))
     );
