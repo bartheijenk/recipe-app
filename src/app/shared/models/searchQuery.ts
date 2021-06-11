@@ -31,7 +31,7 @@ export class SearchQuery {
                 queryString = queryString.concat("&maxSer=" + this.maxSer);
             }
             if (this.minSer) {
-                queryString = queryString.concat("&minSer=" + this.maxSer);
+                queryString = queryString.concat("&minSer=" + this.minSer);
             }
         }
 

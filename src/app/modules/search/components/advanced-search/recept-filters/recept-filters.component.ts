@@ -14,6 +14,8 @@ import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
 export class ReceptFiltersComponent implements OnInit {
   filter: FormGroup;
   private _catMap: Array<string> = [];
+  maxServings :number = 30;
+  minServings :number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +24,10 @@ export class ReceptFiltersComponent implements OnInit {
   ) {
 
     this.filter = this.formBuilder.group({
-      categories: this.formBuilder.array([])
+      maxSer: [this.maxServings],
+      minSer: [this.minServings],
+      categories: this.formBuilder.array([]),
+      
     });
 
     this.categorieService.getAllCategories().subscribe(cats => {
@@ -46,25 +51,30 @@ export class ReceptFiltersComponent implements OnInit {
   }
   ngOnInit() {   
 
+    this.initReceptenSubject();
+  }
+
+  private initReceptenSubject() {
     this.searchService.receptenSub$.subscribe(recepten$ => {
       recepten$.subscribe(recepten => {
         let currentCategories: Array<string> = [];
         recepten.forEach(r => {
+
           r.categories.forEach(c => {
             currentCategories.push(c.id);
           });
-        })
-        currentCategories = this._catMap.filter(c => !currentCategories.includes(c))
+        });
+        currentCategories = this._catMap.filter(c => !currentCategories.includes(c));
         console.log(currentCategories);
         (this.categories.controls as Array<FormGroup>).forEach(
           f => {
-            if (currentCategories.includes(f.value.id)){
-              f.disable({emitEvent:false})
+            if (currentCategories.includes(f.value.id)) {
+              f.disable({ emitEvent: false });
             } else {
-              f.enable({emitEvent:false})
+              f.enable({ emitEvent: false });
             }
           });
-      });      
+      });
     });
   }
 
@@ -73,12 +83,17 @@ export class ReceptFiltersComponent implements OnInit {
     query.cats = (this.categories.value as Array<any>)
       .filter(c => c.waarde)
       .map(c => c.id);
+
+      query.minSer = this.filter.value.minSer;
+      query.maxSer = this.filter.value.maxSer;
+
     this.searchService.updateFilter(query);
   }
 
   get categories(): FormArray {
     return this.filter.controls["categories"] as FormArray;
-  }
+  }  
+
 
   getCategoryFormGroup(i: number) {
     return this.categories.at(i) as FormGroup

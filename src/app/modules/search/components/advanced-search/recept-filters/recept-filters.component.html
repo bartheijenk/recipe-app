@@ -1,16 +1,30 @@
-<button mat-button (click)="updateFilters()" >Apply Filter</button>
+<button mat-button (click)="updateFilters()">Apply Filter</button>
 
-<div class="filter-container">
+
 <form [formGroup]="filter">
-    <ng-container formArrayName="categories">
-        <ng-container *ngFor="let catForm of categories.controls; index as i">
-            <div [formGroup]="getCategoryFormGroup(i)">
-                    <mat-checkbox formControlName="waarde"> 
+    <div class="filter-container">
+        <ng-container formArrayName="categories">
+            <ng-container *ngFor="let catForm of categories.controls; index as i">
+                <div [formGroup]="getCategoryFormGroup(i)">
+                    <mat-checkbox formControlName="waarde">
 
-                    {{getCategoryFormGroup(i).value.naam}} 
-                </mat-checkbox>
-            </div>
+                        {{getCategoryFormGroup(i).value.naam}}
+                    </mat-checkbox>
+                </div>
+            </ng-container>
         </ng-container>
-    </ng-container>
- </form>
- </div>
+    </div>
+
+
+        <mat-label>Max. Servings</mat-label>
+        <mat-slider formControlName="maxSer" thumbLabel step="1" [min]="minServings" [max]="maxServings" aria-label="units"></mat-slider>
+<BR>
+        <mat-label>Min. Servings</mat-label>
+        <mat-slider formControlName="minSer"
+        thumbLabel 
+        step="1" 
+        [min]="minServings"
+         [max]="maxServings" 
+         aria-label="units"></mat-slider>
+
+</form>
