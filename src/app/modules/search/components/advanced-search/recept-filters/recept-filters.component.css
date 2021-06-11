@@ -1,0 +1,5 @@
+.filter-container {
+    overflow-y: scroll;
+    max-height: 200px;
+    margin: 5px;
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
 import { CategorieService } from './categorie.service';
 import { ReceptService } from './recept.service';
@@ -10,18 +10,18 @@ import { ReceptService } from './recept.service';
   providedIn: 'root'
 })
 export class AdvancedSearchService {
-  
 
-  public _recepten$ : Observable<Recept[]>;
+  private _searchQuery : SearchQuery = new SearchQuery();
+  private _receptenSub$ = new BehaviorSubject<Observable<Recept[]>>(new Observable<Recept[]>());
 
   constructor(
     private receptService: ReceptService,
     private categorieService: CategorieService
-  ) { }
+  ) {
+   }
 
-  initReceptenLijst(param: ParamMap) {    
-    this._recepten$ = new Observable<Recept[]>();
-    let catId = 0;
+  initReceptenLijst(param: ParamMap) {
+    let catId = -1;
     if (param.has("catId")) {
       catId = parseInt(param.get("catId") as string);
     }
@@ -30,30 +30,34 @@ export class AdvancedSearchService {
       backendQuery = this.parseQuery(param);
     }
 
-    this.fillRecepten(backendQuery, param, catId);
-    return this._recepten$;
+    this.fillRecepten(backendQuery, catId);
+    return this._receptenSub$;
   }
 
-  private fillRecepten(backendQuery: SearchQuery, param: ParamMap, catId : number) {
+  private fillRecepten(backendQuery: SearchQuery, catId: number) {
     if (backendQuery.isEmpty()) {
-      if (param.has("catId")) {
+      if (catId != -1) {
         this.getReceptenByCategory(catId);
-        console.log("categorie found=" + param.get("catId"));
+        console.log("categorie found=" + catId);
       } else {
         this.getAllRecepten();
         console.log("nothing found getting all recipes");
       }
     } else {
       console.log("query found!");
-      this._recepten$ = this.receptService.searchByQuery(backendQuery);
+      this._receptenSub$.next(this.receptService.searchByQuery(backendQuery));
     }
   }
-  
+
   private parseQuery(param: ParamMap) {
     let backendQuery = new SearchQuery();
     if (param.has("filter")) {
       let filter = param.get("filter");
       backendQuery.filter = (filter as string == "true");
+    }
+    if(param.has("q")) {
+      let q = param.get("q");
+      backendQuery.q = q as string;
     }
     if (param.has("cats")) {
       let cats = param.getAll("cats");
@@ -73,17 +77,30 @@ export class AdvancedSearchService {
     return backendQuery;
   }
 
-  getReceptenByCategory(catId : number) {    
-      this._recepten$ = this.categorieService.getReceptenByCategory(catId);      
-    
+  getReceptenByCategory(catId: number) {
+    this._receptenSub$.next(this.categorieService.getReceptenByCategory(catId));
+
   }
 
   getAllRecepten(): void {
-    this._recepten$ = this.receptService.getAllRecepten();
+    this._receptenSub$.next(this.receptService.getAllRecepten());
   }
 
-  // get recepten$() : Observable<Recept[]> {
-  //   return this._recepten$ as Observable<Recept[]>;
+  get receptenSub$() : BehaviorSubject<Observable<Recept[]>> {
+    return this._receptenSub$;
 
-  // }
+  }
+
+  updateQuery(q :string) {
+    this._searchQuery.q = q;
+  }
+
+  updateFilter(searchQuery : SearchQuery) {
+    // console.log(searchQuery)
+    if(!searchQuery.q) {
+      searchQuery.q = this._searchQuery.q
+    }
+    searchQuery.filter = true;
+    this._receptenSub$.next(this.receptService.searchByQuery(searchQuery));
+  }
 }

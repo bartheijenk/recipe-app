@@ -9,7 +9,8 @@ export class SidenavRoutingComponent implements OnInit {
   links = [
     { name: "Home", path: "", icon: "home" },
     { name: "Lijsten", path: "recepten/lijst", icon: "list" },
-    { name: "Recept Invoeren", path: "invoer", icon: "create"}
+    { name: "Recept Invoeren", path: "invoer", icon: "create"},
+    { name: "Search", path: "search/results", icon: "search"}
   ];
 
   

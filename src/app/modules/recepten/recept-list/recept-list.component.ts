@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AdvancedSearchService, CategorieService, ReceptService } from 'src/app/core';
-import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
+import { AdvancedSearchService } from 'src/app/core';
+import { Recept } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-recept-list',
@@ -26,12 +26,12 @@ export class ReceptListComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((param) => {
       this.searchService.initReceptenLijst(param)
-      .subscribe(c => this.updatePage(0, this.pageSize));
-         });
+        .subscribe(() => this.updatePage(0, this.pageSize));
+    });
   }
 
-  get recepten$(): Observable<Recept[]> {     
-    return this.searchService._recepten$;
+  get recepten$(): Observable<Recept[]> {
+    return this.searchService.receptenSub$.getValue();
   }
 
   change(event: PageEvent) {

@@ -13,8 +13,11 @@ export class SearchQuery {
 
     public createQueryAsString(): string {
         let queryString = "?";
+        if(this.q) {
+            queryString = queryString.concat("q=");
+        }
         if (this.filter) {
-            queryString = queryString.concat("filter=true")
+            queryString = queryString.concat(this.q ? "&filter=true" : "filter=true");
             if (this.ingr) {
                 this.ingr.forEach(i => queryString = queryString.concat("&ingr=" + i));
             }
@@ -30,8 +33,6 @@ export class SearchQuery {
             if (this.minSer) {
                 queryString = queryString.concat("&minSer=" + this.maxSer);
             }
-        } else {
-            queryString = queryString.concat("q=" + this.q)
         }
 
         return queryString;

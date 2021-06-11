@@ -1,0 +1,19 @@
+<button mat-button (click)="updateFilters()" >Apply Filter</button>
+<!-- <button mat-button (click)="categories.reset()">Reset Filters</button> -->
+
+<div class="filter-container">
+<form [formGroup]="filter">
+    <ng-container formArrayName="categories">
+        <ng-container *ngFor="let catForm of categories.controls; index as i">
+            <div [formGroup]="getCategoryFormGroup(i)">
+                    <mat-checkbox formControlName="waarde"> 
+
+                    {{getCategoryFormGroup(i).value.naam}} 
+                </mat-checkbox>
+            </div>
+        </ng-container>
+    </ng-container>
+ </form>
+ </div>
+
+ {{categories.value | json}}
