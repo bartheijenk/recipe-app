@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { Recept } from 'src/app/shared/models';
-import { Categorie } from 'src/app/shared/models/categorie';
-import { SearchQuery } from 'src/app/shared/models/searchQuery';
+import { Recept, SearchQuery } from 'src/app/shared/models';
 import { environment } from 'src/environments/environment';
 
 
@@ -14,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class ReceptService {
   
   
-  
+  private readonly uri = environment.apiUrl + "recepten";
 
   constructor(
     private http: HttpClient
@@ -24,7 +21,7 @@ export class ReceptService {
     return this.http.get<string>("http://localhost:9080/receptweb/api/hello-world");
   }
 
-  private readonly uri = environment.apiUrl + "recepten";
+
 
   getAllRecepten(): Observable<Recept[]> {
     return this.http.get<Recept[]>(this.uri);

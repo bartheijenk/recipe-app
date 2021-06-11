@@ -1,13 +1,10 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { ReceptService } from 'src/app/core';
-import { CategorieService } from 'src/app/core/services/categorie.service';
-import { Recept } from 'src/app/shared/models';
-import { Categorie } from 'src/app/shared/models/categorie';
-import { SearchQuery } from 'src/app/shared/models/searchQuery';
+import { Observable } from 'rxjs';
+import { map} from 'rxjs/operators';
+import { CategorieService, ReceptService } from 'src/app/core';
+import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-recept-list',

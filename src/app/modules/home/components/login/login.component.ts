@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
-import { UserService } from 'src/app/core/services/user.service';
-import { User } from 'src/app/shared/models/user';
+import { UserService } from 'src/app/core/';
+import { User } from 'src/app/shared/models';
+
 
 @Component({
   selector: 'app-login',

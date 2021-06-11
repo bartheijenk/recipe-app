@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Output } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { Recept } from 'src/app/shared/models';
-import { Categorie } from 'src/app/shared/models/categorie';
+import { Categorie, Recept } from 'src/app/shared/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CategorieService {
 
+  private readonly uri = environment.apiUrl + "categories"
 
   constructor(
     private http: HttpClient
@@ -18,18 +17,18 @@ export class CategorieService {
 
   getCategorie(arg0: string | null): Observable<Categorie> {
     if (arg0 != null) {
-      return this.http.get<Categorie>(environment.apiUrl + "categories/" + arg0);
+      return this.http.get<Categorie>(this.uri + arg0);
     }
     return of()
   }
 
   getAllCategories(): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(environment.apiUrl + "categories");
+    return this.http.get<Categorie[]>(this.uri);
   }
 
   
 
   getReceptenByCategory(category: Categorie): Observable<Recept[]> {
-    return this.http.get<Recept[]>(`${environment.apiUrl}categories/${category.id}/recepten`);
+    return this.http.get<Recept[]>(`${this.uri}/${category.id}/recepten`);
   }
 }

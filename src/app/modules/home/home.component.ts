@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ReceptService } from '../../core/';
 import { Recept } from 'src/app/shared/models';
 import { Observable } from 'rxjs';
-import { RandomizerService } from 'src/app/core/services/randomizer.service';
+import { RandomizerService, ReceptService } from 'src/app/core';
 
 @Component({
   selector: 'app-home',

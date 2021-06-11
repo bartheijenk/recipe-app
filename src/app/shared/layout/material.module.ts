@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -59,6 +59,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
         MatBottomSheetModule,
         MatButtonModule,
         MatButtonToggleModule,
+        
         MatCardModule,
         MatCheckboxModule,
         MatChipsModule,

@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { MaterialModule, SharedModule } from 'src/app/shared';
-import { CoreModule } from 'src/app/core';
+import { SharedModule } from 'src/app/shared';
 import { RouterModule } from '@angular/router';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { LoginComponent } from './components/login/login.component';

@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core"
 import {CommonModule} from '@angular/common'
-import { MaterialModule } from "./components/material.module";
+import { MaterialModule } from "./layout/material.module";
 import { CategorieTostringPipe } from './pipes/categorie-tostring.pipe'
 import { CoreModule } from "../core";
 import { NewlinesPipe } from './pipes/newlines.pipe';

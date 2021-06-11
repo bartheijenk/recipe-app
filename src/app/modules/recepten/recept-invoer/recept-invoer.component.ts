@@ -3,11 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, startWith, switchMap } from 'rxjs/operators';
-import { ReceptService } from 'src/app/core';
-import { CategorieService } from 'src/app/core/services/categorie.service';
-import { Recept, ReceptIngredient } from 'src/app/shared/models';
-import { Categorie } from 'src/app/shared/models/categorie';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { CategorieService, ReceptService } from 'src/app/core';
+import { Categorie, Recept, ReceptIngredient } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-recept-invoer',
