@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
 import { Form, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MAT_BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR } from '@angular/material/button-toggle';
 import { Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { AdvancedSearchService, CategorieService, ReceptService } from 'src/app/core';
+import { AdvancedSearchService, CategorieService, IngredientService, ReceptService } from 'src/app/core';
 import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
 
 @Component({
@@ -14,21 +15,47 @@ import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
 export class ReceptFiltersComponent implements OnInit {
   filter: FormGroup;
   private _catMap: Array<string> = [];
-  maxServings :number = 30;
-  minServings :number = 0;
+  private _ingrMap: Array<string> = [];
+  maxServings: number = 30;
+  minServings: number = 0;
+  catPanelOpenState = false;
+  serPanelOpenState = false;
+  ingrPanelOpenState = false;
+  bronPanelOpenState = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private searchService: AdvancedSearchService,
-    private categorieService: CategorieService
+    private categorieService: CategorieService,
+    private ingredientService: IngredientService
   ) {
 
     this.filter = this.formBuilder.group({
       maxSer: [this.maxServings],
       minSer: [this.minServings],
       categories: this.formBuilder.array([]),
-      
+      ingredienten: this.formBuilder.array([]),
+      bronnen: this.formBuilder.array([])
+
     });
+
+    this.ingredientService.getAllIngredients().subscribe(ingrs => {
+      ingrs.forEach(ingr => {
+        if(!this._ingrMap.includes(ingr.id))
+          this._ingrMap.push(ingr.id)
+        const group = this.formBuilder.group({
+          id: ingr.id,
+          naam: ingr.naam,
+          waarde: false
+        });
+        this.ingredienten.push(group);
+        group.valueChanges.pipe(
+          debounceTime(20)
+        ).subscribe(() => {
+          this.updateFilters()
+        })
+      })
+    })
 
     this.categorieService.getAllCategories().subscribe(cats => {
       cats.forEach(cat => {
@@ -49,7 +76,7 @@ export class ReceptFiltersComponent implements OnInit {
     })
 
   }
-  ngOnInit() {   
+  ngOnInit() {
 
     this.initReceptenSubject();
   }
@@ -58,18 +85,28 @@ export class ReceptFiltersComponent implements OnInit {
     this.searchService.receptenSub$.subscribe(recepten$ => {
       recepten$.subscribe(recepten => {
         let currentCategories: Array<string> = [];
+        let currentIngredients: Array<string> = [];
         recepten.forEach(r => {
-
+          r.ingredienten.forEach(i => {
+            currentIngredients.push(i.ingredient.id);
+          })
           r.categories.forEach(c => {
             currentCategories.push(c.id);
           });
         });
         currentCategories = this._catMap.filter(c => !currentCategories.includes(c));
-        console.log(currentCategories);
+        currentIngredients = this._ingrMap.filter(i => !currentIngredients.includes(i));
         (this.categories.controls as Array<FormGroup>).forEach(
           f => {
             if (currentCategories.includes(f.value.id)) {
               f.disable({ emitEvent: false });
+            } else {
+              f.enable({ emitEvent: false });
+            }
+          });
+          (this.ingredienten.controls as Array<FormGroup>).forEach( f =>{
+            if(currentIngredients.includes(f.value.id)) {
+              f.disable({emitEvent: false})
             } else {
               f.enable({ emitEvent: false });
             }
@@ -84,15 +121,27 @@ export class ReceptFiltersComponent implements OnInit {
       .filter(c => c.waarde)
       .map(c => c.id);
 
-      query.minSer = this.filter.value.minSer;
-      query.maxSer = this.filter.value.maxSer;
+    query.ingr = (this.ingredienten.value as Array<any>)
+      .filter(i => i.waarde)
+      .map(i => i.id);
+
+    query.minSer = this.filter.value.minSer;
+    query.maxSer = this.filter.value.maxSer;
 
     this.searchService.updateFilter(query);
   }
 
   get categories(): FormArray {
     return this.filter.controls["categories"] as FormArray;
-  }  
+  }
+
+  get ingredienten(): FormArray {
+    return this.filter.controls["ingredienten"] as FormArray;
+  }
+
+  getIngredientFormGroup(i: number) {
+    return this.ingredienten.at(i) as FormGroup
+  }
 
 
   getCategoryFormGroup(i: number) {

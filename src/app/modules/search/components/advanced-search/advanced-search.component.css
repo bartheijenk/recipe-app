@@ -18,3 +18,7 @@ mat-drawer-container {
      width: 80%;
      overflow-y: auto;
  }
+
+ .search-label {
+     margin: 5px;
+ }

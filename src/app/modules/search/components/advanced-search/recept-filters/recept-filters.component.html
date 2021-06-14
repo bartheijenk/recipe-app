@@ -1,30 +1,89 @@
 <button mat-button (click)="updateFilters()">Apply Filter</button>
-
-
 <form [formGroup]="filter">
-    <div class="filter-container">
-        <ng-container formArrayName="categories">
-            <ng-container *ngFor="let catForm of categories.controls; index as i">
-                <div [formGroup]="getCategoryFormGroup(i)">
-                    <mat-checkbox formControlName="waarde">
+    <mat-accordion>
 
-                        {{getCategoryFormGroup(i).value.naam}}
-                    </mat-checkbox>
-                </div>
-            </ng-container>
-        </ng-container>
-    </div>
+        <mat-expansion-panel hideToggle (opened)="catPanelOpenState = true" (closed)="catPanelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Categories
+                </mat-panel-title>
+                <mat-icon>
+                    {{catPanelOpenState ? 'expand_less' : 'expand_more'}}
+                </mat-icon>
+            </mat-expansion-panel-header>
+
+            <div>
+                <ng-container formArrayName="categories">
+                    <ng-container *ngFor="let catForm of categories.controls; index as i">
+                        <div [formGroup]="getCategoryFormGroup(i)">
+                            <mat-checkbox formControlName="waarde">
+
+                                {{getCategoryFormGroup(i).value.naam}}
+                            </mat-checkbox>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle (opened)="serPanelOpenState = true" (closed)="serPanelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Servings
+                </mat-panel-title>
+                <mat-icon>
+                    {{serPanelOpenState ? 'expand_less' : 'expand_more'}}
+                </mat-icon>
+            </mat-expansion-panel-header>
+
+            <mat-label>Max. Servings</mat-label>
+            <mat-slider formControlName="maxSer" thumbLabel step="1" [min]="minServings" [max]="maxServings"
+                aria-label="units">
+            </mat-slider>
+            <BR>
+            <mat-label>Min. Servings</mat-label>
+            <mat-slider formControlName="minSer" thumbLabel step="1" [min]="minServings" [max]="maxServings"
+                aria-label="units">
+            </mat-slider>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle (opened)="ingrPanelOpenState = true" (closed)="ingrPanelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Ingredients
+                </mat-panel-title>
+                <mat-icon>
+                    {{ingrPanelOpenState ? 'expand_less' : 'expand_more'}}
+                </mat-icon>
+            </mat-expansion-panel-header>
+
+            <div>
+                <ng-container formArrayName="ingredienten">
+                    <ng-container *ngFor="let ingr of ingredienten.controls; index as i">
+                        <div [formGroup]="getIngredientFormGroup(i)">
+                            <mat-checkbox formControlName="waarde">
+
+                                {{getIngredientFormGroup(i).value.naam}}
+                            </mat-checkbox>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+        </mat-expansion-panel>
+
+        <!-- <mat-expansion-panel hideToggle (opened)="bronPanelOpenState = true" (closed)="bronPanelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Bronnen
+                </mat-panel-title>
+                <mat-icon>
+                    {{bronPanelOpenState ? 'expand_less' : 'expand_more'}}
+                </mat-icon>
+            </mat-expansion-panel-header>
+
+        </mat-expansion-panel> -->
 
 
-        <mat-label>Max. Servings</mat-label>
-        <mat-slider formControlName="maxSer" thumbLabel step="1" [min]="minServings" [max]="maxServings" aria-label="units"></mat-slider>
-<BR>
-        <mat-label>Min. Servings</mat-label>
-        <mat-slider formControlName="minSer"
-        thumbLabel 
-        step="1" 
-        [min]="minServings"
-         [max]="maxServings" 
-         aria-label="units"></mat-slider>
-
+    </mat-accordion>
 </form>

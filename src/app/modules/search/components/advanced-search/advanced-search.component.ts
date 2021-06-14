@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdvancedSearchService } from 'src/app/core';
+import { AdvancedSearchService, IngredientService } from 'src/app/core';
 
 @Component({
   selector: 'app-advanced-search',
@@ -11,7 +11,8 @@ export class AdvancedSearchComponent implements OnInit {
   queryString: string;
 
   constructor(
-    private searchService: AdvancedSearchService
+    private searchService: AdvancedSearchService,
+    private ingredientenService: IngredientService
   ) { }
 
   ngOnInit(): void {
@@ -19,5 +20,9 @@ export class AdvancedSearchComponent implements OnInit {
 
   updateQuery() {
     this.searchService.updateQuery(this.queryString);
+  }
+
+  getAllBronnen() {
+
   }
 }

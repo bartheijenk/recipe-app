@@ -85,7 +85,7 @@ export class ReceptInvoerComponent implements OnInit {
           ingredient: {
             calorienPerHonderd: "",
             naam: ingredientEnInstructie[0],
-            id: null,
+            id: "",
             isRecept: null
           }
         };
