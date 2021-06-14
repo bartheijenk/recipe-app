@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Categorie, Recept } from 'src/app/shared/models';
+import { ParamMap } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class RandomizerService {
 
   private readonly uri = environment.apiUrl + "randomizer";
+  private _receptenSub$ = new BehaviorSubject<Observable<Recept[]>>(new Observable<Recept[]>());
 
   constructor(
     private http: HttpClient
@@ -25,5 +27,19 @@ export class RandomizerService {
 
   getRandomizedList(limit : number) : Observable<Recept[]> {
     return this.http.get<Recept[]>(this.uri + "?limit=" + limit);
+  }
+
+  initReceptenLijst(param: ParamMap) {
+    let catId = -1;
+    if (param.has("catId")) {
+      catId = parseInt(param.get("catId") as string);
+    }
+
+    // this.fillRecepten(catId);
+    return this._receptenSub$;
+  }
+
+  get receptenSub$() : BehaviorSubject<Observable<Recept[]>> {
+    return this._receptenSub$;
   }
 }

@@ -7,10 +7,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SidenavRoutingComponent implements OnInit {
   links = [
-    { name: "Home", path: "", icon: "home" },
-    { name: "Lijsten", path: "recepten/lijst", icon: "list" },
-    { name: "Recept Invoeren", path: "invoer", icon: "create"},
-    { name: "Search", path: "search/results", icon: "search"}
+    { name: "Home", path: "", param: null, icon: "home" },
+    { name: "Lijsten", path: "recepten/lijst", param: null, icon: "list" },
+    { name: "Recept Invoeren", path: "invoer", param: null, icon: "create"},
+    { name: "Search", path: "search/results", param:null, icon: "search"},
+    { name: "Randomizer", path: "/recepten/randomizer/list", param: {rnd: true}, icon: "shuffle"}
   ];
 
   

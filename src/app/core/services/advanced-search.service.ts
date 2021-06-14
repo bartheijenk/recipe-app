@@ -88,7 +88,6 @@ export class AdvancedSearchService {
 
   get receptenSub$() : BehaviorSubject<Observable<Recept[]>> {
     return this._receptenSub$;
-
   }
 
   updateQuery(q :string) {

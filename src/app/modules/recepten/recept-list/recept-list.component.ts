@@ -3,7 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AdvancedSearchService } from 'src/app/core';
+import { AdvancedSearchService, RandomizerService } from 'src/app/core';
 import { Recept } from 'src/app/shared/models';
 
 @Component({
@@ -15,19 +15,27 @@ export class ReceptListComponent implements OnInit {
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
   page$: Observable<Recept[]> | undefined;
-
+  isRandom: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private searchService: AdvancedSearchService
+    private searchService: AdvancedSearchService,
+    private randomizerService: RandomizerService
   ) {
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((param) => {
-      this.searchService.initReceptenLijst(param)
-        .subscribe(() => this.updatePage(0, this.pageSize));
-    });
+    this.route.queryParams.subscribe((param) => this.isRandom = param['rnd'])
+    if(this.isRandom) {
+
+      console.log("RANOMD")
+    } else {
+      this.route.queryParamMap.subscribe((param) => {
+        this.searchService.initReceptenLijst(param)
+          .subscribe(() => this.updatePage(0, this.pageSize));
+      });
+    }
+    
   }
 
   get recepten$(): Observable<Recept[]> {

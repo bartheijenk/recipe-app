@@ -10,6 +10,7 @@ import { ReceptListComponent } from './recept-list/recept-list.component';
 import { SharedModule } from 'src/app/shared';
 import { ReceptInvoerComponent } from './recept-invoer/recept-invoer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RandomizerComponent } from './randomizer/randomizer.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListHomeComponent,
     ReceptDetailComponent,
     ReceptListComponent,
-    ReceptInvoerComponent
+    ReceptInvoerComponent,
+    RandomizerComponent
   ],
   imports: [
     CommonModule,

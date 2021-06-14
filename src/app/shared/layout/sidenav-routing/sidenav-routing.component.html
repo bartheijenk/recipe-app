@@ -1,5 +1,5 @@
 <mat-nav-list>
-    <mat-list-item *ngFor="let link of links" routerLink="{{link.path}}" (click)="toggleSide()">
+    <mat-list-item *ngFor="let link of links" routerLink="{{link.path}}" [queryParams]="link.param" (click)="toggleSide()">
         <p matLine>{{ link.name }}</p>
             <mat-icon>{{link.icon}}</mat-icon>
     </mat-list-item>
