@@ -1,2 +1,31 @@
-<p>randomizer works!</p>
+<h1>Recept Randomizer</h1>
+<div class="container">
+<form [formGroup]="randomizerInput">
+<mat-form-field>
+    <mat-label>Limiet</mat-label>
+    <input matInput type="number" formControlName="limit">
+</mat-form-field>
+<BR>
+<mat-form-field>
+    <mat-label>Categorie</mat-label>
+    <input matInput [matAutocomplete]="auto" [formControl]="catCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let cat of filteredCategories | async" [value]="cat.naam">
+            {{cat.naam}}
+        </mat-option>
+    </mat-autocomplete>
+    
+</mat-form-field>
+<button mat-button (click)="addCategorie()">Add</button>
+</form>
+<h3>Added Categories</h3>
+<ul>
+    <li *ngFor="let addedCat of addedCategories">{{addedCat.naam}}
+        <button mat-button color="warn" (click)="removeAddedCat(addedCat)">Remove</button>
+    </li>
+</ul>
+<div>
+<button mat-button (click)="submit()">Randomize!</button>
+</div>
+</div>
 <router-outlet></router-outlet>

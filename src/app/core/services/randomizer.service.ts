@@ -21,8 +21,12 @@ export class RandomizerService {
     if (cats.length > 0) {
       let catIds: string = "";
       cats.forEach(
-        c => catIds.concat("&catIds=" + c)
+
+        c =>
+          catIds = catIds.concat("&catIds=" + c)
+
       );
+      console.log(catIds)
       return this.http.get<Recept[]>(this.uri + "?limit=" + limit + catIds);
     }
     else {
@@ -32,6 +36,10 @@ export class RandomizerService {
 
   getRandomizedList(limit: number): Observable<Recept[]> {
     return this.http.get<Recept[]>(this.uri + "?limit=" + limit);
+  }
+
+  updateRecepten(limit: number, cats: string[]) {
+    this.receptenSub$.next(this.getRandomizedListByCategorie(limit, cats));
   }
 
   initReceptenLijst(param: ParamMap) {
