@@ -26,20 +26,25 @@ export class ReceptListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => this.isRandom = param['rnd'])
-    if(this.isRandom) {
-
-      console.log("RANOMD")
+    if (this.isRandom) {
+      this.route.queryParamMap.subscribe((param) => {
+        this.randomizerService.initReceptenLijst(param)
+          .subscribe(() => this.updatePage(0, this.pageSize));
+      })
     } else {
       this.route.queryParamMap.subscribe((param) => {
         this.searchService.initReceptenLijst(param)
           .subscribe(() => this.updatePage(0, this.pageSize));
       });
     }
-    
   }
 
   get recepten$(): Observable<Recept[]> {
-    return this.searchService.receptenSub$.getValue();
+    if (this.isRandom) {
+      return this.randomizerService.receptenSub$.getValue();
+    } else {
+      return this.searchService.receptenSub$.getValue();
+    }
   }
 
   change(event: PageEvent) {

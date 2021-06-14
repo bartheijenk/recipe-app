@@ -17,29 +17,35 @@ export class RandomizerService {
     private http: HttpClient
   ) { }
 
-  getRandomizedListByCategorie(limit : number, cats : Categorie[]) : Observable<Recept[]> {
-    let catIds : string = "";
-    cats.forEach(
-      c => catIds.concat("&catIds="+ c.id)
-    );
-    return this.http.get<Recept[]>(this.uri + "?limit=" + limit + catIds);
+  getRandomizedListByCategorie(limit: number, cats: string[]): Observable<Recept[]> {
+    if (cats.length > 0) {
+      let catIds: string = "";
+      cats.forEach(
+        c => catIds.concat("&catIds=" + c)
+      );
+      return this.http.get<Recept[]>(this.uri + "?limit=" + limit + catIds);
+    }
+    else {
+      return this.getRandomizedList(limit);
+    }
   }
 
-  getRandomizedList(limit : number) : Observable<Recept[]> {
+  getRandomizedList(limit: number): Observable<Recept[]> {
     return this.http.get<Recept[]>(this.uri + "?limit=" + limit);
   }
 
   initReceptenLijst(param: ParamMap) {
-    let catId = -1;
+    let catIds: string[] = [];
+    let limit = 10;
     if (param.has("catId")) {
-      catId = parseInt(param.get("catId") as string);
+      catIds = param.getAll("catId");
     }
 
-    // this.fillRecepten(catId);
+    this.receptenSub$.next(this.getRandomizedListByCategorie(limit, catIds))
     return this._receptenSub$;
   }
 
-  get receptenSub$() : BehaviorSubject<Observable<Recept[]>> {
+  get receptenSub$(): BehaviorSubject<Observable<Recept[]>> {
     return this._receptenSub$;
   }
 }
