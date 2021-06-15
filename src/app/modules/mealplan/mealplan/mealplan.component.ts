@@ -41,7 +41,10 @@ export class MealplanComponent implements OnInit {
           start: new Date(item.date),
           color: item.isAvondeten ? colors.yellow : colors.blue,
           allDay: true,
-          draggable: true
+          draggable: true,
+          meta: {
+            item : item
+          }
           };
         });
       } ));
@@ -55,6 +58,8 @@ export class MealplanComponent implements OnInit {
   }: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
+    let mealplanItem : MealplanItem = event.meta.item;   
+    this.mealplanService.updateDate(mealplanItem, newStart);
     this.refresh.next();
   }
 

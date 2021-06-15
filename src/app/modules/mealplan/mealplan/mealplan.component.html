@@ -42,7 +42,7 @@
           [dropData]="{event: event}"
           [dragAxis]="{x: event.draggable, y: event.draggable}"    
     >
-        {{event.title}}
+        {{event.title}} {{event.meta.item.servings}}
         </small>
   </ng-template>
 <div *ngIf="events$ | async; else loading; let events">
