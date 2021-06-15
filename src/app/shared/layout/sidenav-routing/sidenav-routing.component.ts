@@ -11,7 +11,8 @@ export class SidenavRoutingComponent implements OnInit {
     { name: "Lijsten", path: "recepten/lijst", param: null, icon: "list" },
     { name: "Recept Invoeren", path: "invoer", param: null, icon: "create"},
     { name: "Search", path: "search/results", param:null, icon: "search"},
-    { name: "Randomizer", path: "/recepten/randomizer/list", param: {rnd: true}, icon: "shuffle"}
+    { name: "Randomizer", path: "/recepten/randomizer/list", param: {rnd: true}, icon: "shuffle"},
+    { name: "Mealplan", path: "mealplan", param: null, icon: "edit_calendar"}
   ];
 
   

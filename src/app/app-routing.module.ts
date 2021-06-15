@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards';
 import { ReceptResolver } from './core/resolvers';
-import { RandomizerComponent } from './modules/recepten/randomizer/randomizer.component';
 import { ReceptInvoerComponent } from './modules/recepten/recept-invoer/recept-invoer.component';
 
 const routes: Routes = [
@@ -16,6 +15,7 @@ const routes: Routes = [
     }
   },
   { path: 'search', loadChildren: () => import ('./modules/search/search.module').then(m => m.SearchModule)},
+  { path: 'mealplan', loadChildren: () => import ('./modules/mealplan/mealplan.module').then(m => m.MealplanModule)}
 
 
 ];
