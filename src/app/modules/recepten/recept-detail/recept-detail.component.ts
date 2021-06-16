@@ -10,13 +10,8 @@ import { Categorie, Recept } from 'src/app/shared/models';
 })
 export class ReceptDetailComponent implements OnInit {
   recept: Recept | undefined;
-  colspanIngr = 1;
-  colspanInst = 3;
-  cols = 4;
-  rowHeight = "1:5";
 
   constructor(
-    private receptService: ReceptService,
     private route: ActivatedRoute
   ) {
 

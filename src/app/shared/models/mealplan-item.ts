@@ -1,9 +1,16 @@
 import { Recept } from "./recept";
 
-export interface MealplanItem {
-    id : number,
-    date: Date,
-    isAvondeten: boolean,
-    servings: number,
-    recept: Recept
+export class MealplanItem {
+    id : number;
+    date: Date;
+    isAvondeten: boolean;
+    servings: number;
+    recept: Recept;
+}
+
+export class MealplanRequest {
+    date: string;
+    isAvondeten: boolean;
+    servings: number;
+    recept: number;
 }

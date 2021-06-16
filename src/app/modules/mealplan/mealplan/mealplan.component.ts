@@ -7,8 +7,9 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
-import { colors } from '../color-util';
 import { map } from 'rxjs/operators';
+import * as moment from 'moment'
+
 
 @Component({
   selector: 'app-mealplan',
@@ -27,28 +28,50 @@ export class MealplanComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
+  activeDayIsOpen: boolean = true;
+
   constructor(
     private mealplanService: MealplanService
-  ) { }
-  ngOnInit(): void {
-    this.events$ = this.mealplanService.getAllMealplanItems()
-    .pipe(
-      map( results => {
-        return results.map((item: MealplanItem) => {
-          console.log(item.date)
-          return {
-            title: item.recept.titel,
-          start: new Date(item.date),
-          color: item.isAvondeten ? colors.yellow : colors.blue,
-          allDay: true,
-          draggable: true,
-          meta: {
-            item : item
-          }
-          };
-        });
-      } ));
+  ) {
 
+  }
+
+  ngOnInit(): void {
+    this.mealplanService.getAllMealplanItems();
+    this.mealplanService.mealplanItemsSub$.subscribe(() => this.loadEvents())
+  }
+
+  private loadEvents() {
+    let mealplan = this.mealplanService.mealplanItemsSub$.getValue();
+    this.events$ = mealplan
+      .pipe(
+        map(results => {
+          return results.map((item: MealplanItem) => {
+            return {
+              title: item.recept.titel,
+              start: new Date(item.date),
+              colour: item.isAvondeten ? "primary" : "accent",
+              allDay: true,
+              draggable: true,
+              meta: {
+                item: item
+              },
+              actions: [
+                this.deleteEvent(),
+                  ]
+            };
+          });
+        }));
+  }
+
+  private deleteEvent(): { label: string; a11yLabel: string; onClick: ({ event }: { event: CalendarEvent; }) => void; } {
+    return {
+      label: "<span class='material-icons-outlined '>delete</span>",
+      a11yLabel: 'Delete',
+      onClick: ({ event }: { event: CalendarEvent; }): void => {
+        this.mealplanService.deleteMealPlanItem(event.meta.item);
+      }
+    };
   }
 
   eventTimesChanged({
@@ -58,9 +81,23 @@ export class MealplanComponent implements OnInit {
   }: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
-    let mealplanItem : MealplanItem = event.meta.item;   
+    let mealplanItem: MealplanItem = event.meta.item;
     this.mealplanService.updateDate(mealplanItem, newStart);
     this.refresh.next();
+  }
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (date.getMonth() == this.viewDate.getMonth()) {
+      if (
+        (this.viewDate.getDay() == date.getDay() && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
   }
 
 }
