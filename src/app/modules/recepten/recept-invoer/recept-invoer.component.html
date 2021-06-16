@@ -39,7 +39,11 @@
 
         <button mat-button matStepperNext>Next</button>
     </mat-step>
+    
     <mat-step [stepControl]="ingredientenFormGroup">
+
+        
+        
         <form [formGroup]="ingredientenFormGroup">
             <mat-form-field  class="full-width">
                 <mat-label>Ingredienten</mat-label>
@@ -50,6 +54,8 @@
                 
             </mat-form-field>
         </form>
+        <button mat-button (click)="fillIngredienten()">Validate Input</button>
+        <button mat-button matStepperNext>Next</button>
         {{message$ | async}}
         <ul>
             <li *ngFor="let ing of addedIngredients">
@@ -59,8 +65,6 @@
                 Instructie: {{ing.instructie}}
             </li>
         </ul>
-        <button mat-button (click)="fillIngredienten()">Validate Input</button>
-        <button mat-button matStepperNext>Next</button>
     </mat-step>
     <mat-step [stepControl]="instructieFormGroup">
         <form [formGroup]="instructieFormGroup">

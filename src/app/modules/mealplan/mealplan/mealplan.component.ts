@@ -10,6 +10,7 @@ import {
 import { map } from 'rxjs/operators';
 import * as moment from 'moment'
 import { ThemePalette } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class MealplanComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
 
   constructor(
-    private mealplanService: MealplanService
+    private mealplanService: MealplanService,
+    private router: Router
   ) {
 
   }
@@ -59,6 +61,8 @@ export class MealplanComponent implements OnInit {
               },
               actions: [
                 this.deleteEvent(),
+                this.clickEvent()
+
                   ]
             };
           });
@@ -71,6 +75,16 @@ export class MealplanComponent implements OnInit {
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent; }): void => {
         this.mealplanService.deleteMealPlanItem(event.meta.item);
+      }
+    };
+  }
+
+  private clickEvent(): { label: string; a11yLabel: string; onClick: ({ event }: { event: CalendarEvent; }) => void; } {
+    return {
+      label: "<span class='material-icons-outlined '>Go to</span>",
+      a11yLabel: 'Delete',
+      onClick: ({ event }: { event: CalendarEvent; }): void => {
+        this.router.navigate(["/recepten/" + event.meta.item.recept.id]);
       }
     };
   }

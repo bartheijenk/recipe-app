@@ -47,7 +47,7 @@ export class MealplanInvoerenComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.addMealplan.invalid) {
+    if (!this.addMealplan.invalid || this.servingsLeft <= 0) {
       this.servingsLeft -= this.addMealplan.value.servings;
 
 

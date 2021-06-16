@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.userService.login(this.user);
-    this.user = {} as User;
+    
     this.message$.subscribe(
       m => {
         this.snackBar.open(m, undefined, { duration: 3000 })
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = {} as User;
   }
 
 }

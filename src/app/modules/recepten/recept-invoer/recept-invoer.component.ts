@@ -64,7 +64,7 @@ export class ReceptInvoerComponent implements OnInit {
 
     this.receptService.saveRecept(this.recept).subscribe(
       r => {
-        this.snackBar.open("Recept opgeslagen met id: " + r.id);
+        this.snackBar.open("Recept opgeslagen met id: " + r.id, undefined, { duration: 3000 });
         this.initializeFormGroups();
       });
   }
@@ -146,7 +146,10 @@ export class ReceptInvoerComponent implements OnInit {
     ).subscribe(
       c => {
         c == null ? cat = { id: "", naam: this.catCtrl.value } : cat = c;
-        this.addedCategories.push(cat)
+        if(!this.addedCategories.includes(cat))
+          this.addedCategories.push(cat)
+        
+        this.catCtrl.reset();
       }
     );
   }
