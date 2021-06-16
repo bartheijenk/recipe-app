@@ -7,9 +7,13 @@
 
 </mat-paginator>
 <mat-nav-list>
-    <a mat-list-item [routerLink]="['/recepten', recept.id]" *ngFor="let recept of (page$ | async)"> 
+    <mat-list-item class="item" *ngFor="let recept of (page$ | async)" >
+    <a  [routerLink]="['/recepten', recept.id]" > 
         <span class="recept-titel">{{ recept.titel }} </span>
-        <small> | Servings: {{recept.servings}} | Categorieen: {{recept.categories | categorieTostring}}
+        <small class="recept-data"> | Servings: {{recept.servings}} | Categorieen: {{recept.categories | categorieTostring}}
         </small>
     </a>
+        <a [routerLink]="['/mealplan/invoer', recept.id]" class="mealplan-add"  matTooltip="Add to mealplan"><mat-icon>event_available</mat-icon></a>
+    
+</mat-list-item>
  </mat-nav-list>

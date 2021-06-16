@@ -9,6 +9,7 @@ import {
 } from 'angular-calendar';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment'
+import { ThemePalette } from '@angular/material/core';
 
 
 @Component({

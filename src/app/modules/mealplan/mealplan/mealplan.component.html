@@ -32,6 +32,8 @@
 </ng-template>
 
 
+Legenda: <mat-chip-list><mat-chip color="primary" selected>Avondeten</mat-chip><mat-chip color="accent" selected>Lunch</mat-chip></mat-chip-list>
+
 <ng-template #customCellTemplate let-day="day" let-locale="locale">
     <div class="cal-cell-top">
       <span class="cal-day-number"
@@ -46,7 +48,7 @@
           dragActiveClass="cal-drag-active"
           [dropData]="{event: event}"
           [dragAxis]="{x: event.draggable, y: event.draggable}"  
-          [color]="event.colour.color" selected 
+          [color]="event.colour" selected 
           
     >
         {{event.title}} {{event.meta.item.servings}}

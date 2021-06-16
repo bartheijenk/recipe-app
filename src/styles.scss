@@ -17,6 +17,10 @@ body { margin:0;
     justify-content: center;
     margin: 10px;
     flex-wrap: wrap;
+    
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
 }
 
 h1{
@@ -27,6 +31,12 @@ h1{
 p {
     padding-left: 10px;
 }
+
+ /* Rules for sizing the icon. */
+ .mat-icon.md-18 { font-size: 18px; }
+ .mat-icon.md-24 { font-size: 24px; }
+ .mat-icon.md-36 { font-size: 36px; }
+ .mat-icon.md-48 { font-size: 48px; }
 
 //  div{
 //     border:1px solid black !important;

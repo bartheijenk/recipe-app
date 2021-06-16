@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MealplanService } from 'src/app/core';
 import { MealplanItem, MealplanRequest, Recept } from 'src/app/shared/models';
@@ -17,7 +17,7 @@ export class MealplanInvoerenComponent implements OnInit {
 
   recept: Recept;
   mealplanItem: MealplanItem;
-  servingsLeft: number;
+  servingsLeft: number = 2;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,9 +26,10 @@ export class MealplanInvoerenComponent implements OnInit {
   ) {
     this.addMealplan = this.formBuilder.group({
       recept: [],
-      servings: [2, [Validators.required, Validators.max(this.servingsLeft)]],
+      servings: [, [Validators.required,
+      (control: AbstractControl) => Validators.max(this.servingsLeft)(control)]],
       date: [moment().toISOString(), Validators.required],
-      isAvondeten: [true, Validators.required]
+      isAvondeten: [true]
     })
   }
 
@@ -46,19 +47,22 @@ export class MealplanInvoerenComponent implements OnInit {
   }
 
   onSubmit() {
-    this.servingsLeft -= this.addMealplan.value.servings;
-    
+    if (!this.addMealplan.invalid) {
+      this.servingsLeft -= this.addMealplan.value.servings;
 
-    let formValues = this.addMealplan.value
 
-    let mealplanRequest = new MealplanRequest();
+      let formValues = this.addMealplan.value
 
-    mealplanRequest.date = moment(formValues.date).format("yyyy-MM-DD");
-    mealplanRequest.isAvondeten = formValues.isAvondeten;
-    mealplanRequest.servings = formValues.servings;
-    mealplanRequest.recept = this.recept.id;
-    this.mealplanService.addMealplanItem(mealplanRequest);
-    
+      let mealplanRequest = new MealplanRequest();
+
+      mealplanRequest.date = moment(formValues.date).format("yyyy-MM-DD");
+      mealplanRequest.isAvondeten = formValues.isAvondeten;
+      mealplanRequest.servings = formValues.servings;
+      mealplanRequest.recept = this.recept.id;
+      this.mealplanService.addMealplanItem(mealplanRequest);
+      
+      this.addMealplan.controls["servings"].reset();
+    }
   }
 
 }

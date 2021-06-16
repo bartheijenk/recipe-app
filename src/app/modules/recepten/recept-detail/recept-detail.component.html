@@ -1,20 +1,25 @@
 <h1>{{ recept?.titel}}</h1>
-<p class="servings">Servings: {{recept?.servings}}</p>
-<mat-chip-list aria-label="Categories">
-  <div class="container">
-    <mat-chip color="accent" *ngFor="let category of recept?.categories" [routerLink]="['/recepten/lijst', category.id]"
-      selected>{{category.naam}}</mat-chip>
-  </div>
-</mat-chip-list>
-
 <div class="container">
+  <div>
+    <p class="servings">Servings: {{recept?.servings}}</p> <BR>
+    <a [routerLink]="['/mealplan/invoer', recept?.id]" class="mealplan-add" matTooltip="Add to mealplan">
+      <mat-icon class="md-48">event_available</mat-icon>
+    </a>
+  </div> <BR>
+  <div>
+    <mat-chip-list aria-label="Categories">
+      <div class="width-adjust">
+        <mat-chip color="accent" *ngFor="let category of recept?.categories"
+          [routerLink]="['/recepten/lijst', category.id]" selected>{{category.naam}}</mat-chip>
+      </div>
+    </mat-chip-list>
+  </div>
 
-  <div class="ingredienten">
+
+  <div class="width-adjust">
     <h3>Ingredienten</h3>
     <ul>
       <li *ngFor="let ingInRec of recept?.ingredienten">
-        <!-- <mat-list-item role="listitem" *ngFor="let ingInRec of recept?.ingredienten"> -->
-        <!-- </mat-list-item> -->
         {{ingInRec.hoeveelheid}} {{ingInRec.eenheid}} {{ingInRec.ingredient.naam}}, {{ingInRec.instructie}}
 
       </li>

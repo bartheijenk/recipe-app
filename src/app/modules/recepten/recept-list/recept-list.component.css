@@ -1,4 +1,4 @@
-.mat-list-item:hover{
+.item:hover{
     background-color: var(--color-accent);
 }
 
@@ -11,12 +11,24 @@
     .recept-titel {
         width: 50%;
     }
+    .recept-data{
+        visibility: hidden;
+    }
 }
 @media (min-width: 600px) {
     .recept-titel {
         width: 20%;
     }
+    .recept-data{
+        visibility: visible;
+    }
 }
 .recept-titel {
     margin-right: 5px;
+}
+
+.mealplan-add{
+    position: absolute;
+    right: 0;
+    padding-right: 20px;
 }

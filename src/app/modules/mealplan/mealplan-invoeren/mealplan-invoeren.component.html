@@ -24,7 +24,6 @@
 
         <mat-checkbox formControlName="isAvondeten">Avondeten</mat-checkbox> <br>
 
-        <button mat-button type="submit">Submit</button>
+        <button mat-button type="submit" [disabled]="addMealplan.invalid">Submit</button>
     </form>
 </div>
-{{addMealplan.value | json}}
