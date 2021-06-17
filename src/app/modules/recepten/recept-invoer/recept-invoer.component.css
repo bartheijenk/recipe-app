@@ -1,10 +1,13 @@
 .full-width {
     width: 100%;
-    min-height: 450px;
+    min-height: 250px;
     min-width: 200px;
-    height: 500px;
+    height: 300px;
   }
 
   textarea {
-      min-height: 250px;
+      height: 250px;
+  }
+
+  .scroll{
   }

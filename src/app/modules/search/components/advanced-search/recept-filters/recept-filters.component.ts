@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { waitForAsync } from '@angular/core/testing';
-import { Form, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MAT_BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR } from '@angular/material/button-toggle';
-import { Observable } from 'rxjs';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { AdvancedSearchService, CategorieService, IngredientService, ReceptService } from 'src/app/core';
-import { Categorie, Recept, SearchQuery } from 'src/app/shared/models';
+import { AdvancedSearchService, CategorieService, IngredientService} from 'src/app/core';
+import { Recept, SearchQuery } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-recept-filters',
@@ -16,7 +13,7 @@ export class ReceptFiltersComponent implements OnInit {
   filter: FormGroup;
   private _catMap: Array<string> = [];
   private _ingrMap: Array<string> = [];
-  maxServings: number = 30;
+  maxServings: number = 20;
   minServings: number = 0;
   catPanelOpenState = false;
   serPanelOpenState = false;

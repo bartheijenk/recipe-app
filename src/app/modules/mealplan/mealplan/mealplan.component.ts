@@ -63,7 +63,7 @@ export class MealplanComponent implements OnInit {
                 this.deleteEvent(),
                 this.clickEvent()
 
-                  ]
+              ]
             };
           });
         }));

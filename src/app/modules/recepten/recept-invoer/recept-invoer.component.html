@@ -1,80 +1,82 @@
 <h1>Recept Invoeren</h1>
-<mat-horizontal-stepper linear="true" #stepper>
-    <mat-step [stepControl]="metaDataFormGroup">
-        <form [formGroup]="metaDataFormGroup">
-            <mat-form-field>
-                <mat-label>Titel</mat-label>
-                <input matInput name="titel" required formControlName="titel">
-            </mat-form-field><BR>
-            <mat-form-field>
-                <mat-label>Servings</mat-label>
-                <input matInput type="number" name="servings" required formControlName="servings">
-            </mat-form-field><BR>
-            <mat-form-field>
-                <mat-label>Bron</mat-label>
-                <input matInput name="bron" formControlName="bron">
-            </mat-form-field><BR>
-        </form>
-        
-        <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step [stepControl]="categorieFormGroup">
-        <form [formGroup]="categorieFormGroup">
-            <mat-form-field>
-                <mat-label>Categorie</mat-label>
-                <input matInput [matAutocomplete]="auto" [formControl]="catCtrl">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let cat of filteredCategories | async" [value]="cat.naam">
-                        {{cat.naam}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <button mat-button (click)="addCategorie()">Add</button>
-        </form>
-        <ul>
-            <li *ngFor="let addedCat of addedCategories">{{addedCat.naam}}
-                <button mat-button color="warn" (click)="removeAddedCat(addedCat)">Remove</button>
-            </li>
-        </ul>
+<div class="scroll">
+    <mat-horizontal-stepper linear="true" #stepper>
+        <mat-step [stepControl]="metaDataFormGroup">
+            <form [formGroup]="metaDataFormGroup">
+                <mat-form-field>
+                    <mat-label>Titel</mat-label>
+                    <input matInput name="titel" required formControlName="titel">
+                </mat-form-field><BR>
+                <mat-form-field>
+                    <mat-label>Servings</mat-label>
+                    <input matInput type="number" name="servings" required formControlName="servings">
+                </mat-form-field><BR>
+                <mat-form-field>
+                    <mat-label>Bron</mat-label>
+                    <input matInput name="bron" formControlName="bron">
+                </mat-form-field><BR>
+            </form>
 
-        <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    
-    <mat-step [stepControl]="ingredientenFormGroup">
+            <button mat-button matStepperNext>Next</button>
+        </mat-step>
+        <mat-step [stepControl]="categorieFormGroup">
+            <form [formGroup]="categorieFormGroup">
+                <mat-form-field>
+                    <mat-label>Categorie</mat-label>
+                    <input matInput [matAutocomplete]="auto" [formControl]="catCtrl">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let cat of filteredCategories | async" [value]="cat.naam">
+                            {{cat.naam}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <button mat-button (click)="addCategorie()">Add</button>
+            </form>
+            <ul>
+                <li *ngFor="let addedCat of addedCategories">{{addedCat.naam}}
+                    <button mat-button color="warn" (click)="removeAddedCat(addedCat)">Remove</button>
+                </li>
+            </ul>
 
-        
-        
-        <form [formGroup]="ingredientenFormGroup">
-            <mat-form-field  class="full-width">
-                <mat-label>Ingredienten</mat-label>
-                <textarea matInput name="ingredienten" formControlName="ingredienten"></textarea>
-                <mat-error *ngIf="ingredientenFormGroup.hasError('pattern')">
-                    One of the ingredient lines does not match "number unit name(, instruction)".
-                </mat-error>
-                
-            </mat-form-field>
-        </form>
-        <button mat-button (click)="fillIngredienten()">Validate Input</button>
-        <button mat-button matStepperNext>Next</button>
-        {{message$ | async}}
-        <ul>
-            <li *ngFor="let ing of addedIngredients">
-                Hoeveelheid: {{ing.hoeveelheid}} |
-                Eenheid: {{ing.eenheid}} |
-                Ingredient: {{ing.ingredient.naam}} |
-                Instructie: {{ing.instructie}}
-            </li>
-        </ul>
-    </mat-step>
-    <mat-step [stepControl]="instructieFormGroup">
-        <form [formGroup]="instructieFormGroup">
-            <mat-form-field  class="full-width">
-                <mat-label>Instructies</mat-label>
-                <textarea matInput name="instructies" formControlName="instructies"></textarea>
-                              
-            </mat-form-field>
-        </form>
-        
-        <button mat-button type="submit" (click)="submit()">Finish</button>
-    </mat-step>
-</mat-horizontal-stepper>
+            <button mat-button matStepperNext>Next</button>
+        </mat-step>
+
+        <mat-step [stepControl]="ingredientenFormGroup">
+
+
+
+            <form [formGroup]="ingredientenFormGroup">
+                <mat-form-field class="full-width">
+                    <mat-label>Ingredienten</mat-label>
+                    <textarea matInput name="ingredienten" formControlName="ingredienten"></textarea>
+                    <mat-error *ngIf="ingredientenFormGroup.hasError('pattern')">
+                        One of the ingredient lines does not match "number unit name(, instruction)".
+                    </mat-error>
+
+                </mat-form-field>
+            </form>
+            <button mat-button (click)="fillIngredienten()">Validate Input</button>
+            <button mat-button matStepperNext>Next</button>
+            {{message$ | async}}
+            <ul>
+                <li *ngFor="let ing of addedIngredients">
+                    Hoeveelheid: {{ing.hoeveelheid}} |
+                    Eenheid: {{ing.eenheid}} |
+                    Ingredient: {{ing.ingredient.naam}} |
+                    Instructie: {{ing.instructie}}
+                </li>
+            </ul>
+        </mat-step>
+        <mat-step [stepControl]="instructieFormGroup">
+            <form [formGroup]="instructieFormGroup">
+                <mat-form-field class="full-width">
+                    <mat-label>Instructies</mat-label>
+                    <textarea matInput name="instructies" formControlName="instructies"></textarea>
+
+                </mat-form-field>
+            </form>
+            {{instructieFormGroup.value | json}}
+            <button mat-button type="submit" (click)="submit()">Finish</button>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
